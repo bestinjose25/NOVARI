@@ -1,0 +1,518 @@
+{
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "howItWorks": "How We Works",
+    "serviceArea": "Service Area",
+    "contact": "Contact",
+    "quote": "Request a Quote",
+    "language": "Language"
+  },
+
+  "hero": {
+    "badge": "Serving Koblenz & the Mittelrhein region",
+    "location": "NOVARI · Koblenz",
+    "available24": "Available 24/7",
+    "title": "Moving with a",
+    "highlight": "smile.",
+    "mainDescription" : "Moving without stress — NOVARI makes it possible.",
+    "description": "From the packaged box to the assembled piece of furniture: We take care of private and company removals, transports, decluttering and professional assembly work. Sit back!",
+    "quoteButton": "Get a Free Quote",
+    "servicesButton": "View Services",
+    "townsNumber": "7+",
+    "towns": "towns served",
+    "appointmentsNumber": "Same-week",
+    "appointments": "appointments*",
+    "pricingNumber": "Fixed",
+    "pricing": "transparent pricing"
+  },
+
+  "services": {
+    "eyebrow": "What we do",
+    "title": "Everything a move needs — in one team",
+    "description": "From a single sofa across town to a full household or office relocation, plus the assembly and clearing that come with it.",
+    "learnMore": "Learn more",
+
+    "items": {
+      "moving": {
+        "title": "Residential & Business Moves",
+        "description": "Local and long-distance moving for private households and businesses."
+      },
+      "transport": {
+        "title": "Furniture Transport",
+        "description": "Sofas, beds, wardrobes, appliances, tables and other household furniture."
+      },
+      "assembly": {
+        "title": "Assembly & Disassembly",
+        "description": "Beds, wardrobes, kitchens, cabinets and other furniture — built or taken apart."
+      },
+      "clearance": {
+        "title": "Household & Clearances",
+        "description": "Clearing apartments, basements, houses and business premises."
+      },
+      "carrying": {
+        "title": "Carrying Assistance",
+        "description": "Help with heavy furniture, appliances, moving boxes and bulky items."
+      }
+    }
+  },
+
+  "why": {
+    "eyebrow": "Why NOVARI",
+    "title": "The reliable hands behind your move",
+    "description": "We treat your belongings like our own — and we show up on time.",
+
+    "items": {
+      "reliable": {
+        "title": "Reliable service",
+        "description": "What we agree is what we deliver — no surprises on moving day."
+      },
+      "careful": {
+        "title": "Careful handling",
+        "description": "Furniture and fragile items packed, padded and secured properly."
+      },
+      "flexible": {
+        "title": "Flexible scheduling",
+        "description": "Evenings and weekends possible around your timetable."
+      },
+      "pricing": {
+        "title": "Fair, transparent pricing",
+        "description": "Clear quotes up front — you know the cost before we start."
+      },
+      "shortNotice": {
+        "title": "Short-notice appointments",
+        "description": "Same-week slots when our schedule allows."
+      },
+      "punctual": {
+        "title": "Punctual & experienced",
+        "description": "An experienced team that arrives on time and works efficiently."
+      }
+    }
+  },
+
+  "how": {
+    "eyebrow": "How it works",
+    "title": "Five steps to your quote",
+    "description": "Send a few details and photos — we plan the route and come back with a price.",
+    "startQuote": "Start my quote",
+
+    "steps": {
+      "photos": {
+        "title": "Send photos or videos",
+        "description": "Show us the furniture or items you need moved."
+      },
+      "destination": {
+        "title": "Pickup & destination",
+        "description": "Tell us where it starts and where it needs to go."
+      },
+      "access": {
+        "title": "Access information",
+        "description": "Floor, elevator and anything special about access.",
+        "floor": "Floor",
+        "elevator": "Elevator"
+      },
+      "date": {
+        "title": "Preferred date",
+        "description": "Let us know your preferred moving or transport day."
+      },
+      "quote": {
+        "title": "Receive a quote",
+        "description": "We review everything and send your quotation."
+      }
+    }
+  },
+
+    "area": {
+      "eyebrow": "Where we work",
+      "title": "Based in Koblenz, moving the region",
+      "description": "We cover Koblenz and the surrounding Mittelrhein towns — and travel further for long-distance moves.",
+
+    "cities": {
+      "koblenz": "Koblenz",
+      "andernach": "Andernach",
+      "neuwied": "Neuwied",
+      "mayen": "Mayen",
+      "bendorf": "Bendorf",
+      "weissenthurm": "Weißenthurm",
+      "muelheimKaerlich": "Mülheim-Kärlich"
+      },
+
+    "note": "Nearby areas plus local and long-distance moves — just ask."
+  },
+
+  "cta": {
+  "title": "Planning a move? Let NOVARI handle the heavy work.",
+  "quote": "Request a Quote",
+  "whatsapp": "WhatsApp",
+  "call": "Call Now"
+  },
+
+
+  "footer": {
+    "description": "NOVARI GbR — moving, furniture transport, assembly, carrying help and household clearances in Koblenz and the Mittelrhein region.",
+    "navigation": "Navigation",
+    "services": "Services",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp",
+    "phone": "Phone",
+    "email": "Email",
+    "impressum": "Impressum",
+    "privacy": "Privacy Policy",
+    "copyright": "NOVARI GbR · Koblenz, Germany"
+  },
+
+
+"servicesPage": {
+  "hero": {
+    "eyebrow": "Our services",
+    "title": "From one item to a whole household",
+    "description": "Whatever the job — a single wardrobe, a full apartment, an office relocation or a basement to clear — we bring the van, the tools and the muscle."
+  },
+
+  "requestButton": "Request this service",
+
+  "items": {
+    "moving": {
+      "category": "Moving",
+      "title": "Private & business moves",
+      "description": "Local and long-distance relocations for households and companies — planned, packed and carried from door to door.",
+      "tags": [
+        "Private moves",
+        "Business moves",
+        "Local moves",
+        "Long-distance moves"
+      ]
+    },
+
+    "transport": {
+      "category": "Transport",
+      "title": "Furniture transport",
+      "description": "Single items or full loads moved safely — padded, strapped and secured for the trip.",
+      "tags": [
+        "Sofas & couches",
+        "Beds & mattresses",
+        "Wardrobes",
+        "Appliances",
+        "Tables"
+      ]
+    },
+
+    "assembly": {
+      "category": "Assembly",
+      "title": "Furniture assembly & disassembly",
+      "description": "Flat-pack built or taken apart the right way — including IKEA and POCO furniture.",
+      "tags": [
+        "Beds & wardrobes",
+        "Kitchens & cabinets",
+        "IKEA assembly",
+        "POCO assembly"
+      ]
+    },
+
+    "clearance": {
+      "category": "Clearance",
+      "title": "Household clearances & decluttering",
+      "description": "Apartments, basements, houses and business premises emptied, sorted and cleared responsibly.",
+      "tags": [
+        "Apartment clearance",
+        "Basement clearance",
+        "House clearance",
+        "Decluttering"
+      ]
+    },
+
+    "support": {
+      "category": "Support",
+      "title": "Carrying help & small handyman jobs",
+      "description": "Extra hands for the heavy lifting, plus the small practical jobs that come with any move.",
+      "tags": [
+        "Heavy furniture",
+        "Appliances",
+        "Moving boxes",
+        "Small repairs",
+        "Handyman tasks"
+      ]
+    }
+  },
+
+  "cta": {
+    "title": "Not sure which service you need? Just ask.",
+    "quote": "Request a Quote",
+    "contact": "Contact us"
+  }
+},
+
+
+"contactPage": {
+  "hero": {
+    "eyebrow": "Get in touch",
+    "title": "Contact NOVARI",
+    "description": "The fastest way to reach us is WhatsApp or a call — or send a message and we'll come back to you."
+  },
+
+  "cards": {
+    "whatsapp": {
+      "label": "WhatsApp",
+      "description": "Tap to chat — send photos of your items."
+    },
+
+    "phone": {
+      "label": "Telephone",
+      "description": "Prefer to talk it through? Give us a call."
+    },
+
+    "email": {
+      "label": "Email",
+      "description": "Send details and we'll reply by email."
+    },
+
+    "area": {
+      "label": "Service area",
+      "title": "Koblenz & region",
+      "description": "Andernach · Neuwied · Mayen · Bendorf · Weißenthurm."
+    }
+  },
+
+  "hours": {
+    "title": "Business hours",
+    "weekdays": "Monday – Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "appointment": "By appointment"
+  },
+
+  "map": {
+    "caption": "Based in Koblenz — serving the surrounding region."
+  },
+
+  "form": {
+    "title": "Send us a message",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "message": "How can we help?",
+    "messagePlaceholder": "Tell us what you need moved, assembled or cleared…",
+    "consentBefore": "I accept the",
+    "privacy": "privacy policy",
+    "consentAfter": ".",
+    "submit": "Send message",
+    "submitError": "Something went wrong while sending your message. Please try again.",
+
+    "errors": {
+      "name": "Please enter your name",
+      "email": "Enter a valid email address",
+      "message": "Please add a short message"
+    }
+  },
+
+  "success": {
+    "title": "Message sent!",
+    "description": "Thanks for reaching out — we'll reply as soon as we can. For a faster answer, message us on WhatsApp."
+  }
+},
+
+"quotePage": {
+  "hero": {
+    "eyebrow": "Free & no obligation",
+    "title": "Request a quote",
+    "description": "Fill in what you know — the more detail and photos you add, the faster and more accurate your quote."
+  },
+
+  "personal": {
+    "title": "Personal information",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone number",
+    "service": "Type of service"
+  },
+
+  "services": {
+    "choose": "Choose a service…",
+    "residential": "Residential move",
+    "business": "Business move",
+    "transport": "Furniture transport",
+    "assembly": "Furniture assembly / disassembly",
+    "clearance": "Household clearance",
+    "carrying": "Carrying assistance",
+    "unknown": "Not sure yet"
+  },
+
+  "pickup": {
+    "title": "Pickup information",
+    "address": "Pickup address"
+  },
+
+  "destination": {
+    "title": "Destination information",
+    "address": "Destination address"
+  },
+
+  "common": {
+    "streetPlaceholder": "Street and number",
+    "city": "City",
+    "postalCode": "Postal code",
+    "floor": "Floor",
+    "floorPlaceholder": "e.g. 3",
+    "floorPlaceholderDestination": "e.g. 1",
+    "elevator": "Elevator available?",
+    "yes": "Yes",
+    "no": "No"
+  },
+
+  "details": {
+    "title": "Moving details",
+    "date": "Preferred date",
+    "items": "Items to transport",
+    "itemsPlaceholder": "e.g. sofa, 2 wardrobes, 15 boxes",
+    "additional": "Additional information",
+    "additionalPlaceholder": "Narrow staircase, parking, disassembly needed, fragile items…"
+  },
+
+  "photos": {
+    "title": "Photos / additional information",
+    "upload": "Upload photos or videos",
+    "description": "Drag & drop, or click to browse · JPG, PNG, MP4 up to 25 MB each",
+    "remove": "Remove file"
+  },
+
+  "consent": {
+    "before": "I accept the",
+    "privacy": "privacy policy (Datenschutzerklärung)",
+    "after": "and agree to be contacted about my request."
+  },
+
+  "submit": {
+    "button": "Request Quote",
+     "sending": "Sending...",
+    "note": "No obligation · usually answered within 24 h"
+  },
+
+  "errors": {
+    "firstName": "Please enter your first name",
+    "lastName": "Please enter your last name",
+    "email": "Enter a valid email address",
+    "phone": "Please enter your phone number",
+    "service": "Please choose a service"
+  },
+
+  "aside": {
+    "title": "Planning a move? We're here to help.",
+    "description": "Here's what you get when you send a request to NOVARI:",
+    "quote": "Quick, no-obligation quotation",
+    "flexible": "Flexible appointments",
+    "transport": "Furniture transport & assembly",
+    "clearance": "Household clearance",
+    "carrying": "Carrying assistance",
+    "phone": "Telephone",
+    "email": "Email"
+  },
+
+  "success": {
+    "title": "Request received — thank you!",
+    "description": "We've got your details and will get back to you with a quote, usually within 24 hours. For anything urgent, reach us on WhatsApp or by phone.",
+    "whatsapp": "WhatsApp us",
+    "another": "Send another request"
+  }
+},
+
+
+"privacyPage": {
+  "hero": {
+    "eyebrow": "Privacy",
+    "title": "Privacy Policy",
+    "description": "Information about how NOVARI handles personal data when you visit our website or contact us."
+  },
+
+  "controller": {
+    "title": "Controller responsible for data processing",
+    "description": "The party responsible for processing personal data on this website is:",
+    "addressPlaceholder": "[Insert complete NOVARI business address here]",
+    "email": "Email",
+    "phone": "Telephone"
+  },
+
+  "general": {
+    "title": "General information",
+    "text1": "We process personal data only where necessary to operate this website, respond to inquiries and provide our services.",
+    "text2": "Personal data includes information that can identify you directly or indirectly, such as your name, email address, telephone number, IP address or information submitted through our forms."
+  },
+
+  "hosting": {
+    "title": "Website hosting and server log files",
+    "text1": "When you visit this website, the hosting provider may automatically collect technical information such as your IP address, browser type, operating system, date and time of access and requested pages.",
+    "text2": "This information is generally processed to ensure the secure and reliable operation of the website.",
+    "notice": "The final hosting provider and its privacy information will be added here once the website hosting is finalized."
+  },
+
+  "contact": {
+    "title": "Contact by email or telephone",
+    "text1": "If you contact NOVARI by email or telephone, we process the information you provide in order to answer your inquiry and provide the requested service.",
+    "text2": "Your information is retained only for as long as necessary for the inquiry and any applicable legal retention obligations."
+  },
+
+  "forms": {
+    "title": "Contact and quote forms",
+    "text1": "When you submit a contact or quotation request, we may process your name, email address, telephone number, service requirements, pickup and destination information and any additional information you provide.",
+    "text2": "The information is used to process your request, communicate with you and prepare a quotation.",
+    "text3": "Once the backend functionality is activated, this section will also identify the technical service providers involved in transmitting and storing form submissions."
+  },
+
+  "uploads": {
+    "title": "Uploaded photos and videos",
+    "text": "If you upload photos or videos with a quotation request, these files are processed only to assess the requested transport, moving, assembly, clearance or related service. Please avoid uploading unnecessary personal or sensitive information."
+  },
+
+  "whatsapp": {
+    "title": "WhatsApp",
+    "text": "Our website contains links that allow you to contact NOVARI through WhatsApp. When you follow such a link, you leave our website and the privacy rules of WhatsApp and its provider apply."
+  },
+
+  "maps": {
+    "title": "Maps and OpenStreetMap",
+    "text": "Where interactive maps or map tiles are loaded from external providers such as OpenStreetMap, technical information including your IP address may be transmitted to the relevant provider in order to display the map."
+  },
+
+  "fonts": {
+    "title": "Web fonts",
+    "text": "The website currently uses Archivo and Hanken Grotesk. If these fonts are loaded from an external provider such as Google Fonts, a connection to that provider may be established. For production use, locally hosted font files are preferable where practical."
+  },
+
+  "storage": {
+    "title": "Local storage and language preference",
+    "text": "The website may store your selected language in your browser's local storage so that your preferred language can be restored during later visits. This information is stored locally in your browser."
+  },
+
+  "rights": {
+    "title": "Your data protection rights",
+    "intro": "Subject to the applicable legal requirements, you may have the following rights regarding your personal data:",
+    "access": "Right of access to your stored personal data.",
+    "rectification": "Right to correct inaccurate data.",
+    "erasure": "Right to request deletion of personal data.",
+    "restriction": "Right to request restriction of processing.",
+    "portability": "Right to data portability where applicable.",
+    "objection": "Right to object to certain processing.",
+    "withdrawal": "Right to withdraw consent with effect for the future."
+  },
+
+  "complaint": {
+    "title": "Right to lodge a complaint",
+    "text": "You have the right to lodge a complaint with a competent data protection supervisory authority if you believe that the processing of your personal data violates applicable data protection law."
+  },
+
+  "changes": {
+    "title": "Changes to this Privacy Policy",
+    "text": "We may update this Privacy Policy when the website, services or legal requirements change.",
+    "updated": "Last updated: September 2026"
+  },
+
+  "aside": {
+    "title": "Questions about your data?",
+    "description": "Contact NOVARI if you have questions about the processing of your personal information.",
+    "email": "Email",
+    "phone": "Telephone"
+  }
+}
+
+  
+}

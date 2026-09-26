@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../Documents/pythonProject"
+		},
+		{
+			"path": "../../../Documents/ProjectLab"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ProjectLab"
+	}
+}

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "vue-i18n": "^11.4.8"
+  }
+}

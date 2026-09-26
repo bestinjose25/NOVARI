@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVARI GbR — Moving made simple.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   NOVARI — Design Prototype
+   Structure mirrors future Vue components:
+   Header / NavMenu / Button / SectionHeading / ServiceCard /
+   StepItem / AreaMap / ContactCard / CtaBand / Footer / QuoteForm
+   ========================================================= */
+
+:root{
+  /* palette */
+  --ink:#0C272B;          /* deep petrol — text & footer */
+  --teal:#0E5A63;         /* brand teal */
+  --teal-deep:#0A464D;
+  --teal-700:#0B4E56;
+  --amber:#F49B1C;        /* signal amber — action */
+  --amber-dark:#E08A08;
+  --paper:#F4F6F5;        /* cool off-white surface */
+  --paper-2:#EAEFEE;
+  --card:#FFFFFF;
+  --line:#D8E1E0;
+  --slate:#526468;        /* muted text */
+  --slate-2:#6E7F82;
+  --ok:#1E8A5B;
+  --err:#C0362C;
+
+  /* type */
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"Hanken Grotesk",system-ui,sans-serif;
+
+  /* shape */
+  --r-lg:20px; --r-md:14px; --r-sm:10px;
+  --shadow-sm:0 1px 2px rgba(12,39,43,.06),0 2px 6px rgba(12,39,43,.05);
+  --shadow-md:0 6px 18px rgba(12,39,43,.08),0 2px 6px rgba(12,39,43,.05);
+  --shadow-lg:0 20px 48px rgba(10,70,77,.16);
+
+  /* rhythm */
+  --wrap:1180px;
+  --gap:clamp(20px,4vw,40px);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+body{
+  margin:0;font-family:var(--body);color:var(--ink);background:var(--paper);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--display);font-stretch:118%;line-height:1.03;letter-spacing:-.01em;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(18px,4vw,32px)}
+
+/* ---------- Reusable: eyebrow "shipping tag" ---------- */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--display);font-stretch:112%;font-weight:700;
+  font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal);
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--amber);border-radius:2px}
+.eyebrow.on-dark{color:#BFE0DF}
+
+/* ---------- Reusable: Button ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--display);font-stretch:108%;font-weight:700;font-size:15.5px;
+  padding:14px 24px;border-radius:999px;border:2px solid transparent;
+  transition:transform .16s ease,background .16s ease,box-shadow .16s ease,color .16s ease,border-color .16s ease;
+  white-space:nowrap;
+}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:var(--amber);color:#3a2500;box-shadow:0 6px 16px rgba(244,155,28,.35)}
+.btn-primary:hover{background:var(--amber-dark);transform:translateY(-2px)}
+.btn-primary:active{transform:translateY(0)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#08373b;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+.btn-ghost-light{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.28)}
+.btn-ghost-light:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.btn-wa{background:#25D366;color:#053d1b}
+.btn-wa:hover{background:#1FBE5A;transform:translateY(-2px)}
+.btn-lg{padding:17px 30px;font-size:16.5px}
+.btn-block{width:100%}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(244,246,245,.82);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow .2s,border-color .2s}
+.site-header.scrolled{box-shadow:var(--shadow-sm);border-color:var(--line)}
+.nav{display:flex;align-items:center;gap:26px;height:74px}
+.brand{display:flex;align-items:center;gap:11px;margin-right:auto}
+.brand-mark{width:34px;height:34px;flex:none}
+.brand-name{font-family:var(--display);font-stretch:120%;font-weight:900;font-size:22px;letter-spacing:.02em;color:var(--ink)}
+.brand-name b{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  font-family:var(--display);font-stretch:104%;font-weight:600;font-size:15px;
+  color:var(--ink);padding:9px 13px;border-radius:9px;transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:var(--teal);background:var(--paper-2)}
+.nav-links a.active{color:var(--teal)}
+.nav-cta{margin-left:8px}
+.hamburger{display:none;flex:none;width:46px;height:46px;border:1px solid var(--line);border-radius:12px;background:#fff;align-items:center;justify-content:center}
+.hamburger svg{width:22px;height:22px;color:var(--ink)}
+
+/* mobile nav sheet */
+.mobile-nav{position:fixed;inset:0;z-index:70;background:rgba(12,39,43,.5);opacity:0;pointer-events:none;transition:opacity .2s}
+.mobile-nav.open{opacity:1;pointer-events:auto}
+.mobile-panel{position:absolute;top:0;right:0;height:100%;width:min(340px,86vw);background:var(--paper);box-shadow:var(--shadow-lg);transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:22px}
+.mobile-nav.open .mobile-panel{transform:translateX(0)}
+.mobile-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.mobile-close{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center}
+.mobile-close svg{width:20px;height:20px}
+.mobile-links{display:flex;flex-direction:column;gap:2px}
+.mobile-links a{font-family:var(--display);font-stretch:108%;font-weight:700;font-size:19px;padding:14px 12px;border-radius:12px;color:var(--ink)}
+.mobile-links a:hover{background:var(--paper-2);color:var(--teal)}
+.mobile-links .btn{margin-top:14px}
+
+/* ---------- Page system ---------- */
+.page{display:none}
+.page.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- Section rhythm ---------- */
+.section{padding-block:clamp(58px,8vw,104px)}
+.section-tint{background:var(--paper-2)}
+.section-white{background:#fff}
+.sec-head{max-width:640px;margin-bottom:44px}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head h2{font-size:clamp(30px,4.6vw,50px);font-weight:800;margin:14px 0 0}
+.sec-head p{margin-top:16px;color:var(--slate);font-size:18px}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 88% 8%,rgba(14,90,99,.10),transparent 55%),
+  radial-gradient(80% 70% at 0% 100%,rgba(244,155,28,.10),transparent 60%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:center;padding-block:clamp(48px,7vw,84px);position:relative}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px 7px 8px;font-size:13.5px;font-weight:600;color:var(--slate);box-shadow:var(--shadow-sm);margin-bottom:22px}
+.hero-kicker .dot{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(30,138,91,.16)}
+.hero h1{font-size:clamp(44px,7.4vw,86px);font-weight:900;font-stretch:122%;letter-spacing:-.02em}
+.hero h1 .amber{color:var(--teal)}
+.hero-lead{margin-top:22px;font-size:clamp(17px,2vw,20px);color:var(--slate);max-width:34ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero-trust{display:flex;flex-wrap:wrap;gap:22px;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+.hero-trust div{display:flex;flex-direction:column}
+.hero-trust b{font-family:var(--display);font-stretch:116%;font-weight:800;font-size:24px;color:var(--ink)}
+.hero-trust span{font-size:13.5px;color:var(--slate-2)}
+
+/* hero illustration card */
+.hero-visual{position:relative;background:linear-gradient(160deg,#0E5A63,#0A464D);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow-lg);overflow:hidden}
+.hero-visual .badge{position:absolute;top:20px;right:20px;background:var(--amber);color:#3a2500;font-family:var(--display);font-weight:800;font-stretch:110%;font-size:13px;letter-spacing:.04em;padding:8px 14px;border-radius:999px;z-index:3;box-shadow:var(--shadow-md)}
+.hero-illu{width:100%;height:auto}
+
+/* =========================================================
+   SERVICES GRID (cards)
+   ========================================================= */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.service-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:28px;transition:transform .18s,box-shadow .18s,border-color .18s;position:relative;overflow:hidden}
+.service-card::after{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:transparent}
+.service-card:hover::after{transform:scaleX(1)}
+.svc-ico{width:52px;height:52px;border-radius:13px;background:var(--paper-2);color:var(--teal);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.service-card:hover .svc-ico{background:var(--teal);color:#fff}
+.svc-ico svg{width:26px;height:26px}
+.service-card h3{font-size:21px;font-weight:800}
+.service-card p{margin-top:10px;color:var(--slate);font-size:15.5px}
+.svc-link{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-family:var(--display);font-stretch:106%;font-weight:700;font-size:14.5px;color:var(--teal)}
+.svc-link svg{width:16px;height:16px;transition:transform .18s}
+.service-card:hover .svc-link svg{transform:translateX(4px)}
+
+/* =========================================================
+   WHY (teal band)
+   ========================================================= */
+.why{background:linear-gradient(165deg,var(--teal),var(--teal-deep));color:#fff}
+.why h2{color:#fff}
+.why .sec-head p{color:#C7E0DF}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why-item{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-md);padding:20px}
+.why-item .chk{flex:none;width:34px;height:34px;border-radius:9px;background:var(--amber);color:#3a2500;display:flex;align-items:center;justify-content:center}
+.why-item .chk svg{width:19px;height:19px}
+.why-item h4{font-size:17px;font-weight:800;font-stretch:110%}
+.why-item p{margin-top:4px;font-size:14px;color:#BFDAD9}
+
+/* =========================================================
+   HOW IT WORKS — route with stops
+   ========================================================= */
+.route{position:relative;margin-top:20px}
+.route-line{position:absolute;top:32px;left:6%;right:6%;height:3px;background:repeating-linear-gradient(90deg,var(--teal) 0 14px,transparent 14px 26px);z-index:0}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative;z-index:1}
+.step{text-align:center;padding:0 6px}
+.step .pin{width:66px;height:66px;margin:0 auto 18px;border-radius:50%;background:#fff;border:3px solid var(--teal);color:var(--teal);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-stretch:116%;font-size:24px;box-shadow:var(--shadow-sm);position:relative}
+.step:last-child .pin{background:var(--amber);border-color:var(--amber);color:#3a2500}
+.step .pin svg{width:26px;height:26px}
+.step h4{font-size:17px;font-weight:800}
+.step p{margin-top:8px;font-size:14.5px;color:var(--slate)}
+.step .floors{margin-top:10px;display:inline-flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.step .floors span{font-size:12px;font-weight:600;color:var(--teal);background:var(--paper-2);border-radius:6px;padding:3px 8px}
+
+/* =========================================================
+   SERVICE AREA — map
+   ========================================================= */
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,52px);align-items:center}
+.area-map{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow-md)}
+.area-map svg{width:100%;height:auto}
+.area-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.area-chip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:13px 15px;font-family:var(--display);font-stretch:104%;font-weight:700;font-size:15px;transition:border-color .15s,transform .15s}
+.area-chip:hover{border-color:var(--teal);transform:translateX(3px)}
+.area-chip .pindot{width:11px;height:11px;border-radius:50%;background:var(--amber);flex:none}
+.area-note{margin-top:20px;display:flex;align-items:center;gap:12px;color:var(--slate);font-size:15px}
+.area-note svg{width:22px;height:22px;color:var(--teal);flex:none}
+
+/* =========================================================
+   CTA BAND
+   ========================================================= */
+.cta-band{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;right:-60px;top:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(244,155,28,.20),transparent 68%)}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;position:relative}
+.cta-inner h2{color:#fff;font-size:clamp(28px,4vw,44px);font-weight:900;max-width:16ch}
+.cta-actions{display:flex;flex-wrap:wrap;gap:14px}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer{background:#081f22;color:#B9C9C9;padding-block:64px 30px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:36px}
+.footer h4{color:#fff;font-size:14px;font-stretch:112%;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.footer .brand-name{color:#fff;font-size:24px}
+.footer .brand-name b{color:var(--amber)}
+.footer-desc{margin-top:14px;font-size:14.5px;color:#93A8A8;max-width:34ch}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.footer ul a{font-size:14.5px;color:#B9C9C9;transition:color .15s}
+.footer ul a:hover{color:var(--amber)}
+.footer .contact-line{display:flex;align-items:center;gap:11px;font-size:14.5px;margin-bottom:12px}
+.footer .contact-line svg{width:18px;height:18px;color:var(--amber);flex:none}
+.footer .contact-line b{color:#fff;font-weight:600}
+.footer-bottom{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.09);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:#7E9494}
+.footer-bottom a{color:#7E9494}.footer-bottom a:hover{color:var(--amber)}
+
+/* =========================================================
+   SERVICES PAGE
+   ========================================================= */
+.page-hero{background:linear-gradient(165deg,var(--teal),var(--teal-deep));color:#fff;padding-block:clamp(48px,7vw,84px)}
+.page-hero .eyebrow{color:#BFE0DF}
+.page-hero h1{color:#fff;font-size:clamp(38px,6vw,68px);font-weight:900;margin-top:14px}
+.page-hero p{margin-top:18px;color:#C7E0DF;font-size:19px;max-width:56ch}
+.svc-rows{display:flex;flex-direction:column;gap:22px}
+.svc-row{display:grid;grid-template-columns:1.15fr 1fr;gap:0;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.svc-row:nth-child(even){grid-template-columns:1fr 1.15fr}
+.svc-row:nth-child(even) .svc-media{order:-1}
+.svc-body{padding:clamp(26px,3.4vw,44px)}
+.svc-body .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-stretch:106%;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:var(--paper-2);padding:6px 12px;border-radius:999px}
+.svc-body h3{font-size:clamp(24px,3vw,32px);font-weight:800;margin-top:16px}
+.svc-body>p{margin-top:12px;color:var(--slate);font-size:16px}
+.svc-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.svc-examples span{font-size:13.5px;font-weight:600;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 13px}
+.svc-body .btn{margin-top:24px}
+.svc-media{background:linear-gradient(160deg,#0E5A63,#0A464D);min-height:240px;display:flex;align-items:center;justify-content:center;padding:24px;position:relative}
+.svc-media svg{width:80%;height:auto;max-height:220px}
+.photo-slot{position:absolute;bottom:12px;left:12px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);background:rgba(0,0,0,.18);padding:5px 10px;border-radius:6px}
+
+/* =========================================================
+   QUOTE FORM PAGE
+   ========================================================= */
+.quote-grid{display:grid;grid-template-columns:1.4fr .95fr;gap:clamp(24px,3.5vw,44px);align-items:start}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(22px,3vw,36px);box-shadow:var(--shadow-sm)}
+.fieldset{border:0;padding:0;margin:0 0 30px}
+.fieldset:last-of-type{margin-bottom:0}
+.fs-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.fs-num{width:30px;height:30px;flex:none;border-radius:8px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:15px}
+.fs-head h3{font-size:19px;font-weight:800}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-row.thirds{grid-template-columns:2fr 1fr 1fr}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.field.full{grid-column:1/-1}
+.field label{font-family:var(--display);font-stretch:104%;font-weight:700;font-size:13.5px;color:var(--ink)}
+.field label .req{color:var(--err)}
+.field input,.field select,.field textarea{
+  font-family:var(--body);font-size:15.5px;color:var(--ink);background:var(--paper);
+  border:1.5px solid var(--line);border-radius:var(--r-sm);padding:12px 14px;transition:border-color .15s,background .15s,box-shadow .15s;width:100%;
+}
+.field textarea{resize:vertical;min-height:96px}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:var(--slate-2)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);background:#fff;box-shadow:0 0 0 4px rgba(14,90,99,.12)}
+.field.error input,.field.error select,.field.error textarea{border-color:var(--err);background:#FDF3F2}
+.field .msg{font-size:12.5px;color:var(--err);display:none;align-items:center;gap:6px}
+.field.error .msg{display:flex}
+.field .msg svg{width:14px;height:14px}
+
+/* segmented yes/no */
+.seg{display:inline-flex;background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:4px;gap:4px}
+.seg button{border:0;background:transparent;padding:9px 20px;border-radius:7px;font-family:var(--display);font-weight:700;font-size:14px;color:var(--slate);transition:.15s}
+.seg button.on{background:var(--teal);color:#fff}
+
+/* upload */
+.upload{border:2px dashed var(--line);border-radius:var(--r-md);padding:26px;text-align:center;background:var(--paper);transition:.15s;cursor:pointer}
+.upload:hover{border-color:var(--teal);background:#fff}
+.upload.dragover{border-color:var(--amber);background:#FFF9EF}
+.upload svg{width:34px;height:34px;color:var(--teal);margin:0 auto 10px}
+.upload b{font-family:var(--display);font-stretch:106%;font-weight:700;font-size:15px}
+.upload span{display:block;font-size:13px;color:var(--slate-2);margin-top:4px}
+.file-list{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.file-item{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13.5px}
+.file-item svg{width:16px;height:16px;color:var(--teal);flex:none}
+.file-item .rm{margin-left:auto;color:var(--slate-2);border:0;background:none;font-size:18px;line-height:1}
+.file-item .rm:hover{color:var(--err)}
+
+/* consent + submit */
+.consent{display:flex;gap:12px;align-items:flex-start;margin:22px 0}
+.consent input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--teal)}
+.consent label{font-size:14px;color:var(--slate)}
+.consent a{color:var(--teal);text-decoration:underline}
+.consent.error label{color:var(--err)}
+.submit-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.spinner{width:19px;height:19px;border:2.5px solid rgba(58,37,0,.3);border-top-color:#3a2500;border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn.loading .spinner{display:inline-block}
+.btn.loading .btn-label{opacity:.7}
+.form-note{font-size:13px;color:var(--slate-2)}
+
+/* success */
+.form-success{display:none;text-align:center;padding:26px 10px}
+.form-success.show{display:block;animation:fade .4s}
+.form-success .tick{width:72px;height:72px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.form-success .tick svg{width:38px;height:38px}
+.form-success h3{font-size:26px;font-weight:800}
+.form-success p{margin-top:12px;color:var(--slate);max-width:44ch;margin-inline:auto}
+
+/* aside reassurance */
+.aside-card{background:linear-gradient(165deg,var(--teal),var(--teal-deep));color:#fff;border-radius:var(--r-lg);padding:clamp(24px,3vw,34px);position:sticky;top:96px}
+.aside-card h3{color:#fff;font-size:26px;font-weight:800}
+.aside-card>p{margin-top:12px;color:#C7E0DF;font-size:15.5px}
+.aside-list{list-style:none;padding:0;margin:22px 0;display:flex;flex-direction:column;gap:13px}
+.aside-list li{display:flex;gap:11px;align-items:center;font-size:15px}
+.aside-list li svg{width:20px;height:20px;color:var(--amber);flex:none}
+.aside-contact{border-top:1px solid rgba(255,255,255,.16);margin-top:24px;padding-top:22px;display:flex;flex-direction:column;gap:11px}
+.aside-contact a{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-sm);padding:13px 16px;transition:.15s}
+.aside-contact a:hover{background:rgba(255,255,255,.16)}
+.aside-contact .ic{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none}
+.aside-contact .ic svg{width:19px;height:19px}
+.aside-contact .ic.wa{background:#25D366;color:#053d1b}
+.aside-contact .ic.ph{background:var(--amber);color:#3a2500}
+.aside-contact .ic.em{background:#fff;color:var(--teal)}
+.aside-contact small{display:block;color:#A9C8C7;font-size:12px}
+.aside-contact b{font-family:var(--display);font-stretch:106%;font-weight:700;font-size:16px}
+
+/* =========================================================
+   CONTACT PAGE
+   ========================================================= */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,44px);align-items:start}
+.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:24px;transition:transform .16s,box-shadow .16s,border-color .16s;display:block}
+.contact-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:transparent}
+.contact-card .ic{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:15px}
+.contact-card .ic svg{width:24px;height:24px}
+.contact-card .ic.wa{background:#E7FBEE;color:#1F9E4E}
+.contact-card .ic.ph{background:#FFF3E0;color:var(--amber-dark)}
+.contact-card .ic.em{background:var(--paper-2);color:var(--teal)}
+.contact-card .ic.loc{background:var(--paper-2);color:var(--teal)}
+.contact-card small{font-family:var(--display);font-stretch:104%;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2)}
+.contact-card b{display:block;font-family:var(--display);font-stretch:110%;font-weight:800;font-size:19px;margin-top:5px}
+.contact-card p{font-size:14px;color:var(--slate);margin-top:6px}
+.hours{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:24px;margin-top:16px}
+.hours h4{font-size:17px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hours h4 svg{width:20px;height:20px;color:var(--teal)}
+.hours-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.hours-row:last-child{border-bottom:0}
+.hours-row span:last-child{font-weight:600}
+.hours-row.closed span:last-child{color:var(--slate-2)}
+.map-strip{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+.map-strip svg{width:100%;height:auto;display:block}
+.map-cap{padding:14px 18px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--slate)}
+.map-cap svg{width:18px;height:18px;color:var(--amber)}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:960px){
+  .nav-links,.nav>.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-visual{order:-1}
+  .grid-3,.why-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr;gap:34px 16px}
+  .route-line{display:none}
+  .area-grid,.quote-grid,.contact-grid{grid-template-columns:1fr}
+  .svc-row,.svc-row:nth-child(even){grid-template-columns:1fr}
+  .svc-row:nth-child(even) .svc-media{order:0}
+  .aside-card{position:static}
+  .cta-inner{flex-direction:column;align-items:flex-start}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .grid-3,.why-grid,.steps,.contact-cards,.area-list{grid-template-columns:1fr}
+  .form-row,.form-row.thirds{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-trust{gap:16px}
+  .btn{width:100%}
+  .hero-actions .btn,.cta-actions .btn,.submit-row .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="header">
+  <div class="wrap nav">
+    <a class="brand" href="#" data-goto="home" aria-label="NOVARI home">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0E5A63"/>
+        <path d="M9 27h12l3.5-7H26l4 4v3h-3" stroke="#F49B1C" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="14" cy="28.5" r="2.4" fill="#fff"/><circle cx="26" cy="28.5" r="2.4" fill="#fff"/>
+        <path d="M9 20h9v7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">NOV<b>A</b>RI</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a data-goto="home" class="active">Home</a>
+      <a data-goto="services">Services</a>
+      <a data-goto="home" data-scroll="how">How It Works</a>
+      <a data-goto="home" data-scroll="area">Service Area</a>
+      <a data-goto="contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" data-goto="quote">Request a Quote</a>
+    <button class="hamburger" id="openMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-panel">
+    <div class="mobile-top">
+      <span class="brand-name">NOV<b>A</b>RI</span>
+      <button class="mobile-close" id="closeMenu" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav class="mobile-links">
+      <a data-goto="home">Home</a>
+      <a data-goto="services">Services</a>
+      <a data-goto="home" data-scroll="how">How It Works</a>
+      <a data-goto="home" data-scroll="area">Service Area</a>
+      <a data-goto="contact">Contact</a>
+      <a class="btn btn-primary btn-block" data-goto="quote">Request a Quote</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ===================== PAGE: HOME ===================== -->
+<main id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="hero-kicker"><span class="dot"></span> Serving Koblenz &amp; the Mittelrhein region</span>
+        <h1>Moving made <span class="amber">simple.</span></h1>
+        <p class="hero-lead">NOVARI handles furniture transport, household &amp; business moves, assembly, clearances and carrying help — from the first box to the last screw.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" data-goto="quote">Get a Free Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-outline btn-lg" data-goto="services">View Services</a>
+        </div>
+        <div class="hero-trust">
+          <div><b>6+</b><span>towns served</span></div>
+          <div><b>Same-week</b><span>appointments*</span></div>
+          <div><b>Fixed</b><span>transparent pricing</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <span class="badge">A → B, handled</span>
+        <svg class="hero-illu" viewBox="0 0 460 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Illustration: a moving van travelling a route between two homes">
+          <!-- route -->
+          <path d="M40 300 C 130 300 120 150 220 150 S 340 300 420 210" stroke="#F49B1C" stroke-width="4" stroke-dasharray="2 12" stroke-linecap="round" opacity=".9"/>
+          <!-- origin pin -->
+          <g>
+            <circle cx="40" cy="300" r="15" fill="#fff"/><circle cx="40" cy="300" r="6" fill="#0E5A63"/>
+          </g>
+          <!-- destination house -->
+          <g transform="translate(384,150)">
+            <path d="M0 40 L20 22 L40 40 Z" fill="#F49B1C"/>
+            <rect x="6" y="40" width="28" height="26" rx="3" fill="#fff"/>
+            <rect x="16" y="50" width="8" height="16" fill="#0E5A63"/>
+          </g>
+          <!-- boxes stack -->
+          <g transform="translate(58,236)">
+            <rect x="0" y="34" width="46" height="40" rx="4" fill="#fff" stroke="#CFE0DF" stroke-width="2"/>
+            <path d="M0 48h46" stroke="#CFE0DF" stroke-width="2"/><path d="M18 34h10v6h-10z" fill="#F49B1C"/>
+            <rect x="20" y="0" width="40" height="34" rx="4" fill="#EAF3F2" stroke="#CFE0DF" stroke-width="2"/>
+            <path d="M20 12h40" stroke="#CFE0DF" stroke-width="2"/><path d="M35 0h10v6h-10z" fill="#F49B1C"/>
+          </g>
+          <!-- VAN -->
+          <g transform="translate(150,196)">
+            <rect x="0" y="0" width="150" height="86" rx="12" fill="#fff"/>
+            <rect x="0" y="0" width="150" height="86" rx="12" fill="none" stroke="#0A464D" stroke-width="0" />
+            <path d="M150 22 h44 l24 26 v34 a6 6 0 0 1 -6 6 H150 Z" fill="#F49B1C"/>
+            <path d="M158 30 h30 l16 18 h-46 Z" fill="#FFE0AC"/>
+            <rect x="16" y="18" width="118" height="50" rx="6" fill="#0E5A63"/>
+            <text x="75" y="50" font-family="Archivo, sans-serif" font-weight="900" font-size="20" fill="#fff" text-anchor="middle" letter-spacing="1">NOVARI</text>
+            <circle cx="40" cy="92" r="16" fill="#0C272B"/><circle cx="40" cy="92" r="7" fill="#8AA0A0"/>
+            <circle cx="176" cy="92" r="16" fill="#0C272B"/><circle cx="176" cy="92" r="7" fill="#8AA0A0"/>
+            <rect x="196" y="52" width="12" height="10" rx="2" fill="#FFD89A"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section section-white" id="services-preview">
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="eyebrow">What we do</span>
+        <h2>Everything a move needs — in one team</h2>
+        <p>From a single sofa across town to a full household or office relocation, plus the assembly and clearing that come with it.</p>
+      </div>
+      <div class="grid-3">
+        <!-- card 1 -->
+        <article class="service-card">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M2 7h12v9H2zM14 10h4l3 3v3h-7z" stroke-linejoin="round"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></div>
+          <h3>Residential &amp; Business Moves</h3>
+          <p>Local and long-distance moving for private households and businesses.</p>
+          <a class="svc-link" data-goto="services">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <!-- card 2 -->
+        <article class="service-card">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M3 11h18v6H3zM5 17v2M19 17v2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Furniture Transport</h3>
+          <p>Sofas, beds, wardrobes, appliances, tables and other household furniture.</p>
+          <a class="svc-link" data-goto="services">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <!-- card 3 -->
+        <article class="service-card">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 7l3-3 3 3-3 3M14 7l-8 8-2 5 5-2 8-8M14 7l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Assembly &amp; Disassembly</h3>
+          <p>Beds, wardrobes, kitchens, cabinets and other furniture — built or taken apart.</p>
+          <a class="svc-link" data-goto="services">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <!-- card 4 -->
+        <article class="service-card">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 8h16l-1.5 12H5.5zM8 8V6a4 4 0 0 1 8 0v2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Household &amp; Clearances</h3>
+          <p>Clearing apartments, basements, houses and business premises.</p>
+          <a class="svc-link" data-goto="services">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <!-- card 5 -->
+        <article class="service-card">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 11V6a1.5 1.5 0 0 1 3 0v4M9 10V4.5a1.5 1.5 0 0 1 3 0V10M12 10V6a1.5 1.5 0 0 1 3 0v5M15 11v-1a1.5 1.5 0 0 1 3 0v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-4.3-2.5L4 16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Carrying Assistance</h3>
+          <p>Help with heavy furniture, appliances, moving boxes and bulky items.</p>
+          <a class="svc-link" data-goto="services">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <!-- card 6 -->
+        <article class="service-card">
+          <div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 4l6 6-3 3-6-6zM11 7L4 14v6h6l7-7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Small Jobs &amp; Handyman</h3>
+          <p>Smaller assembly tasks, minor repairs and practical household work.</p>
+          <a class="svc-link" data-goto="services">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="section why">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow on-dark">Why NOVARI</span>
+        <h2>The reliable hands behind your move</h2>
+        <p>We treat your belongings like our own — and we show up on time.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h4>Reliable service</h4><p>What we agree is what we deliver — no surprises on moving day.</p></div></div>
+        <div class="why-item"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h4>Careful handling</h4><p>Furniture and fragile items packed, padded and secured properly.</p></div></div>
+        <div class="why-item"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h4>Flexible scheduling</h4><p>Evenings and weekends possible around your timetable.</p></div></div>
+        <div class="why-item"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h4>Fair, transparent pricing</h4><p>Clear quotes up front — you know the cost before we start.</p></div></div>
+        <div class="why-item"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h4>Short-notice appointments</h4><p>Same-week slots when our schedule allows.</p></div></div>
+        <div class="why-item"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h4>Punctual &amp; experienced</h4><p>An experienced team that arrives on time and works efficiently.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-white" id="how">
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="eyebrow">How it works</span>
+        <h2>Five steps to your quote</h2>
+        <p>Send a few details and photos — we plan the route and come back with a price.</p>
+      </div>
+      <div class="route">
+        <div class="route-line"></div>
+        <div class="steps">
+          <div class="step">
+            <div class="pin">1</div>
+            <h4>Send photos or videos</h4>
+            <p>Show us the furniture or items you need moved.</p>
+          </div>
+          <div class="step">
+            <div class="pin">2</div>
+            <h4>Pickup &amp; destination</h4>
+            <p>Tell us where it starts and where it needs to go.</p>
+          </div>
+          <div class="step">
+            <div class="pin">3</div>
+            <h4>Access information</h4>
+            <p>Floor, elevator and anything special about access.</p>
+            <div class="floors"><span>Floor</span><span>Elevator</span></div>
+          </div>
+          <div class="step">
+            <div class="pin">4</div>
+            <h4>Preferred date</h4>
+            <p>Let us know your preferred moving or transport day.</p>
+          </div>
+          <div class="step">
+            <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h4>Receive a quote</h4>
+            <p>We review everything and send your quotation.</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:44px">
+        <a class="btn btn-primary btn-lg" data-goto="quote">Start my quote
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section class="section section-tint" id="area">
+    <div class="wrap area-grid">
+      <div class="area-map">
+        <svg viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Stylised service-area map around Koblenz">
+          <rect width="400" height="320" rx="14" fill="#EAF3F2"/>
+          <!-- rivers: Rhine + Mosel meeting at Koblenz (Deutsches Eck) -->
+          <path d="M200 300 C 200 240 210 210 210 175 C 210 140 230 120 250 90 C 270 60 275 30 275 0" stroke="#9ECBD0" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path d="M210 175 C 175 160 120 150 60 120" stroke="#9ECBD0" stroke-width="9" fill="none" stroke-linecap="round"/>
+          <!-- connecting routes -->
+          <path d="M210 175 L120 92 M210 175 L150 235 M210 175 L300 210 M210 175 L295 95 M210 175 L92 155" stroke="#F49B1C" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+          <!-- Koblenz hub -->
+          <g><circle cx="210" cy="175" r="13" fill="#0E5A63"/><circle cx="210" cy="175" r="5" fill="#fff"/>
+            <text x="210" y="205" font-family="Archivo" font-weight="800" font-size="13" fill="#0C272B" text-anchor="middle">Koblenz</text></g>
+          <!-- towns -->
+          <g font-family="Archivo" font-weight="700" font-size="11" fill="#0C272B">
+            <circle cx="120" cy="92" r="6" fill="#F49B1C"/><text x="120" y="80" text-anchor="middle">Andernach</text>
+            <circle cx="150" cy="235" r="6" fill="#F49B1C"/><text x="150" y="255" text-anchor="middle">Mayen</text>
+            <circle cx="300" cy="210" r="6" fill="#F49B1C"/><text x="300" y="230" text-anchor="middle">Neuwied</text>
+            <circle cx="295" cy="95" r="6" fill="#F49B1C"/><text x="295" y="83" text-anchor="middle">Bendorf</text>
+            <circle cx="92" cy="155" r="6" fill="#F49B1C"/><text x="82" y="145" text-anchor="middle">Weißenthurm</text>
+          </g>
+        </svg>
+      </div>
+      <div class="area-copy">
+        <span class="eyebrow">Where we work</span>
+        <h2 style="font-size:clamp(28px,4vw,44px);font-weight:800;margin-top:14px">Based in Koblenz, moving the region</h2>
+        <p style="margin-top:16px;color:var(--slate);font-size:17px">We cover Koblenz and the surrounding Mittelrhein towns — and travel further for long-distance moves.</p>
+        <div class="area-list">
+          <div class="area-chip"><span class="pindot"></span>Koblenz</div>
+          <div class="area-chip"><span class="pindot"></span>Andernach</div>
+          <div class="area-chip"><span class="pindot"></span>Neuwied</div>
+          <div class="area-chip"><span class="pindot"></span>Mayen</div>
+          <div class="area-chip"><span class="pindot"></span>Bendorf</div>
+          <div class="area-chip"><span class="pindot"></span>Weißenthurm</div>
+        </div>
+        <div class="area-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4"/></svg>
+          Nearby areas plus local &amp; long-distance moves — just ask.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section cta-band">
+    <div class="wrap cta-inner">
+      <h2>Planning a move? Let NOVARI handle the heavy work.</h2>
+      <div class="cta-actions">
+        <a class="btn btn-primary btn-lg" data-goto="quote">Request a Quote</a>
+        <a class="btn btn-wa btn-lg" href="https://wa.me/491739523061">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.2 4.3-1.1A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2s-1.1.2-3.6-.9-3.9-3.6-4-3.8-.9-1.2-.9-2.3.6-1.6.8-1.8.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c0 .2.1.4 0 .6l-.4.6-.3.3c-.2.2-.3.3-.1.6a8 8 0 0 0 1.4 1.8 7 7 0 0 0 2.1 1.3c.3.1.4.1.6-.1l.7-.9c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3s0 .6-.2 1z"/></svg>
+          WhatsApp
+        </a>
+        <a class="btn btn-ghost-light btn-lg" href="tel:+491785129865">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 12l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 0-2z" stroke-linejoin="round"/></svg>
+          Call Now
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== PAGE: SERVICES ===================== -->
+<main id="page-services" class="page">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Our services</span>
+      <h1>From one item to a whole household</h1>
+      <p>Whatever the job — a single wardrobe, a full apartment, an office relocation or a basement to clear — we bring the van, the tools and the muscle.</p>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="wrap svc-rows">
+      <!-- ROW: Moves -->
+      <article class="svc-row">
+        <div class="svc-body">
+          <span class="tag">Moving</span>
+          <h3>Private &amp; business moves</h3>
+          <p>Local and long-distance relocations for households and companies — planned, packed and carried from door to door.</p>
+          <div class="svc-examples"><span>Private moves</span><span>Business moves</span><span>Local moves</span><span>Long-distance moves</span></div>
+          <a class="btn btn-primary" data-goto="quote">Request this service</a>
+        </div>
+        <div class="svc-media">
+          <svg viewBox="0 0 200 150" fill="none"><rect x="14" y="46" width="110" height="62" rx="8" fill="#fff"/><path d="M124 62h34l20 20v22a4 4 0 0 1-4 4H124Z" fill="#F49B1C"/><path d="M130 68h24l14 14h-38Z" fill="#FFE0AC"/><rect x="26" y="58" width="86" height="38" rx="5" fill="#0E5A63"/><text x="69" y="82" font-family="Archivo" font-weight="900" font-size="15" fill="#fff" text-anchor="middle">NOVARI</text><circle cx="46" cy="118" r="12" fill="#0C272B"/><circle cx="46" cy="118" r="5" fill="#8AA0A0"/><circle cx="150" cy="118" r="12" fill="#0C272B"/><circle cx="150" cy="118" r="5" fill="#8AA0A0"/></svg>
+          <span class="photo-slot">Photo slot · moving van</span>
+        </div>
+      </article>
+      <!-- ROW: Transport -->
+      <article class="svc-row">
+        <div class="svc-body">
+          <span class="tag">Transport</span>
+          <h3>Furniture transport</h3>
+          <p>Single items or full loads moved safely — padded, strapped and secured for the trip.</p>
+          <div class="svc-examples"><span>Sofas &amp; couches</span><span>Beds &amp; mattresses</span><span>Wardrobes</span><span>Appliances</span><span>Tables</span></div>
+          <a class="btn btn-primary" data-goto="quote">Request this service</a>
+        </div>
+        <div class="svc-media">
+          <svg viewBox="0 0 200 150" fill="none"><rect x="30" y="70" width="140" height="40" rx="10" fill="#fff"/><rect x="30" y="52" width="30" height="30" rx="8" fill="#F49B1C"/><rect x="140" y="52" width="30" height="30" rx="8" fill="#F49B1C"/><rect x="40" y="108" width="8" height="18" rx="3" fill="#0E5A63"/><rect x="152" y="108" width="8" height="18" rx="3" fill="#0E5A63"/><rect x="30" y="84" width="140" height="10" fill="#0E5A63" opacity=".18"/></svg>
+          <span class="photo-slot">Photo slot · furniture</span>
+        </div>
+      </article>
+      <!-- ROW: Assembly -->
+      <article class="svc-row">
+        <div class="svc-body">
+          <span class="tag">Assembly</span>
+          <h3>Furniture assembly &amp; disassembly</h3>
+          <p>Flat-pack built or taken apart the right way — including IKEA and POCO furniture.</p>
+          <div class="svc-examples"><span>Beds &amp; wardrobes</span><span>Kitchens &amp; cabinets</span><span>IKEA assembly</span><span>POCO assembly</span></div>
+          <a class="btn btn-primary" data-goto="quote">Request this service</a>
+        </div>
+        <div class="svc-media">
+          <svg viewBox="0 0 200 150" fill="none"><path d="M120 42l18-18 18 18-18 18Z" fill="#F49B1C"/><path d="M120 42l-52 52-12 30 30-12 52-52" fill="#fff"/><path d="M120 42l18 18" stroke="#0E5A63" stroke-width="4" stroke-linecap="round"/><circle cx="60" cy="102" r="4" fill="#0E5A63"/></svg>
+          <span class="photo-slot">Photo slot · assembly</span>
+        </div>
+      </article>
+      <!-- ROW: Clearances -->
+      <article class="svc-row">
+        <div class="svc-body">
+          <span class="tag">Clearance</span>
+          <h3>Household clearances &amp; decluttering</h3>
+          <p>Apartments, basements, houses and business premises emptied, sorted and cleared responsibly.</p>
+          <div class="svc-examples"><span>Apartment clearance</span><span>Basement clearance</span><span>House clearance</span><span>Decluttering</span></div>
+          <a class="btn btn-primary" data-goto="quote">Request this service</a>
+        </div>
+        <div class="svc-media">
+          <svg viewBox="0 0 200 150" fill="none"><rect x="60" y="56" width="80" height="60" rx="6" fill="#fff"/><path d="M54 56h92l-6-14H60Z" fill="#F49B1C"/><path d="M84 42v-6a16 16 0 0 1 32 0v6" stroke="#0E5A63" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M80 72v30M100 72v30M120 72v30" stroke="#0E5A63" stroke-width="3" stroke-linecap="round"/></svg>
+          <span class="photo-slot">Photo slot · clearance</span>
+        </div>
+      </article>
+      <!-- ROW: Carrying + handyman -->
+      <article class="svc-row">
+        <div class="svc-body">
+          <span class="tag">Support</span>
+          <h3>Carrying help &amp; small handyman jobs</h3>
+          <p>Extra hands for the heavy lifting, plus the small practical jobs that come with any move.</p>
+          <div class="svc-examples"><span>Heavy furniture</span><span>Appliances</span><span>Moving boxes</span><span>Small repairs</span><span>Handyman tasks</span></div>
+          <a class="btn btn-primary" data-goto="quote">Request this service</a>
+        </div>
+        <div class="svc-media">
+          <svg viewBox="0 0 200 150" fill="none"><rect x="70" y="60" width="60" height="50" rx="6" fill="#fff"/><path d="M70 78h60" stroke="#CFE0DF" stroke-width="3"/><path d="M92 60h16v8H92z" fill="#F49B1C"/><path d="M60 110c6-4 12-4 18 0M122 110c6-4 12-4 18 0" stroke="#0E5A63" stroke-width="4" stroke-linecap="round"/></svg>
+          <span class="photo-slot">Photo slot · carrying help</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section cta-band">
+    <div class="wrap cta-inner">
+      <h2>Not sure which service you need? Just ask.</h2>
+      <div class="cta-actions">
+        <a class="btn btn-primary btn-lg" data-goto="quote">Request a Quote</a>
+        <a class="btn btn-ghost-light btn-lg" data-goto="contact">Contact us</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== PAGE: QUOTE ===================== -->
+<main id="page-quote" class="page">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Free &amp; no obligation</span>
+      <h1>Request a quote</h1>
+      <p>Fill in what you know — the more detail and photos you add, the faster and more accurate your quote.</p>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="wrap quote-grid">
+      <!-- FORM -->
+      <div class="form-card">
+        <form id="quoteForm" novalidate>
+          <!-- 1 Personal -->
+          <fieldset class="fieldset">
+            <div class="fs-head"><span class="fs-num">1</span><h3>Personal information</h3></div>
+            <div class="form-row">
+              <div class="field"><label>First name <span class="req">*</span></label><input name="firstName" required><span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Please enter your first name</span></div>
+              <div class="field"><label>Last name <span class="req">*</span></label><input name="lastName" required><span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Please enter your last name</span></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required><span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Enter a valid email address</span></div>
+              <div class="field"><label>Phone number <span class="req">*</span></label><input type="tel" name="phone" required><span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Please enter your phone number</span></div>
+            </div>
+            <div class="field full"><label>Type of service <span class="req">*</span></label>
+              <select name="service" required>
+                <option value="">Choose a service…</option>
+                <option>Residential move</option><option>Business move</option>
+                <option>Furniture transport</option><option>Furniture assembly / disassembly</option>
+                <option>Household clearance</option><option>Carrying assistance</option>
+                <option>Small job / handyman</option><option>Not sure yet</option>
+              </select>
+              <span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Please choose a service</span>
+            </div>
+          </fieldset>
+
+          <!-- 2 Pickup -->
+          <fieldset class="fieldset">
+            <div class="fs-head"><span class="fs-num">2</span><h3>Pickup information</h3></div>
+            <div class="field full"><label>Pickup address</label><input name="puAddress" placeholder="Street and number"></div>
+            <div class="form-row thirds">
+              <div class="field"><label>City</label><input name="puCity"></div>
+              <div class="field"><label>Postal code</label><input name="puZip"></div>
+              <div class="field"><label>Floor</label><input name="puFloor" placeholder="e.g. 3"></div>
+            </div>
+            <div class="field"><label>Elevator available?</label>
+              <div class="seg" data-seg="puElevator"><button type="button" data-val="yes">Yes</button><button type="button" data-val="no" class="on">No</button></div>
+              <input type="hidden" name="puElevator" value="no">
+            </div>
+          </fieldset>
+
+          <!-- 3 Destination -->
+          <fieldset class="fieldset">
+            <div class="fs-head"><span class="fs-num">3</span><h3>Destination information</h3></div>
+            <div class="field full"><label>Destination address</label><input name="deAddress" placeholder="Street and number"></div>
+            <div class="form-row thirds">
+              <div class="field"><label>City</label><input name="deCity"></div>
+              <div class="field"><label>Postal code</label><input name="deZip"></div>
+              <div class="field"><label>Floor</label><input name="deFloor" placeholder="e.g. 1"></div>
+            </div>
+            <div class="field"><label>Elevator available?</label>
+              <div class="seg" data-seg="deElevator"><button type="button" data-val="yes">Yes</button><button type="button" data-val="no" class="on">No</button></div>
+              <input type="hidden" name="deElevator" value="no">
+            </div>
+          </fieldset>
+
+          <!-- 4 Moving details -->
+          <fieldset class="fieldset">
+            <div class="fs-head"><span class="fs-num">4</span><h3>Moving details</h3></div>
+            <div class="form-row">
+              <div class="field"><label>Preferred date</label><input type="date" name="date"></div>
+              <div class="field"><label>Items to transport</label><input name="items" placeholder="e.g. sofa, 2 wardrobes, 15 boxes"></div>
+            </div>
+            <div class="field full"><label>Additional information</label><textarea name="notes" placeholder="Narrow staircase, parking, disassembly needed, fragile items…"></textarea></div>
+          </fieldset>
+
+          <!-- 5 Photos -->
+          <fieldset class="fieldset">
+            <div class="fs-head"><span class="fs-num">5</span><h3>Photos / additional information</h3></div>
+            <div class="upload" id="dropzone" tabindex="0" role="button" aria-label="Upload photos or videos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V6M8 10l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 18h14" stroke-linecap="round"/></svg>
+              <b>Upload photos or videos</b>
+              <span>Drag &amp; drop, or click to browse · JPG, PNG, MP4 up to 25&nbsp;MB each</span>
+              <input type="file" id="fileInput" multiple accept="image/*,video/*" hidden>
+            </div>
+            <div class="file-list" id="fileList"></div>
+          </fieldset>
+
+          <!-- consent -->
+          <div class="consent" id="consentWrap">
+            <input type="checkbox" id="consent" name="consent">
+            <label for="consent">I accept the <a data-goto="contact">privacy policy (Datenschutzerklärung)</a> and agree to be contacted about my request. <span class="req">*</span></label>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+              <span class="spinner"></span><span class="btn-label">Request Quote</span>
+            </button>
+            <span class="form-note">No obligation · usually answered within 24&nbsp;h</span>
+          </div>
+        </form>
+
+        <!-- success -->
+        <div class="form-success" id="formSuccess">
+          <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Request received — thank you!</h3>
+          <p>We've got your details and will get back to you with a quote, usually within 24&nbsp;hours. For anything urgent, reach us on WhatsApp or by phone.</p>
+          <div class="submit-row" style="justify-content:center;margin-top:20px">
+            <a class="btn btn-wa" href="https://wa.me/491739523061">WhatsApp us</a>
+            <button class="btn btn-outline" id="resetForm">Send another request</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="aside-card">
+        <h3>Planning a move? We're here to help.</h3>
+        <p>Here's what you get when you send a request to NOVARI:</p>
+        <ul class="aside-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Quick, no-obligation quotation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Flexible appointments</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Furniture transport &amp; assembly</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Household clearance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Carrying assistance</li>
+        </ul>
+        <div class="aside-contact">
+          <a href="https://wa.me/491739523061"><span class="ic wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.2 4.3-1.1A10 10 0 1 0 12 2z"/></svg></span><span><small>WhatsApp</small><b>0173 9523061</b></span></a>
+          <a href="tel:+491785129865"><span class="ic ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 12l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 0-2z" stroke-linejoin="round"/></svg></span><span><small>Telephone</small><b>0178 5129865</b></span></a>
+          <a href="mailto:Novari2026@yahoo.com"><span class="ic em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6" stroke-linecap="round"/></svg></span><span><small>Email</small><b>Novari2026@yahoo.com</b></span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== PAGE: CONTACT ===================== -->
+<main id="page-contact" class="page">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Get in touch</span>
+      <h1>Contact NOVARI</h1>
+      <p>The fastest way to reach us is WhatsApp or a call — or send a message and we'll come back to you.</p>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="wrap contact-grid">
+      <!-- left: quick contact -->
+      <div>
+        <div class="contact-cards">
+          <a class="contact-card" href="https://wa.me/491739523061">
+            <div class="ic wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.2 4.3-1.1A10 10 0 1 0 12 2z"/></svg></div>
+            <small>WhatsApp</small><b>0173 9523061</b><p>Tap to chat — send photos of your items.</p>
+          </a>
+          <a class="contact-card" href="tel:+491785129865">
+            <div class="ic ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 12l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 0-2z" stroke-linejoin="round"/></svg></div>
+            <small>Telephone</small><b>0178 5129865</b><p>Prefer to talk it through? Give us a call.</p>
+          </a>
+          <a class="contact-card" href="mailto:Novari2026@yahoo.com">
+            <div class="ic em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6" stroke-linecap="round"/></svg></div>
+            <small>Email</small><b>Novari2026@yahoo.com</b><p>Send details and we'll reply by email.</p>
+          </a>
+          <div class="contact-card" style="cursor:default">
+            <div class="ic loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4"/></svg></div>
+            <small>Service area</small><b>Koblenz &amp; region</b><p>Andernach · Neuwied · Mayen · Bendorf · Weißenthurm.</p>
+          </div>
+        </div>
+
+        <div class="hours">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>Business hours</h4>
+          <div class="hours-row"><span>Monday – Friday</span><span>08:00 – 19:00</span></div>
+          <div class="hours-row"><span>Saturday</span><span>09:00 – 16:00</span></div>
+          <div class="hours-row closed"><span>Sunday</span><span>By appointment</span></div>
+        </div>
+
+        <div class="map-strip">
+          <svg viewBox="0 0 600 200" fill="none"><rect width="600" height="200" fill="#EAF3F2"/><path d="M300 200 C300 150 310 130 310 100 C310 60 340 40 360 0" stroke="#9ECBD0" stroke-width="12" fill="none"/><path d="M310 100 C240 90 150 80 40 40" stroke="#9ECBD0" stroke-width="10" fill="none"/><g><circle cx="310" cy="100" r="12" fill="#0E5A63"/><circle cx="310" cy="100" r="4" fill="#fff"/><text x="310" y="128" font-family="Archivo" font-weight="800" font-size="14" fill="#0C272B" text-anchor="middle">Koblenz</text></g><g fill="#F49B1C"><circle cx="150" cy="70" r="6"/><circle cx="450" cy="120" r="6"/><circle cx="230" cy="140" r="6"/></g></svg>
+          <div class="map-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4"/></svg>Based in Koblenz — a real map can drop in here later.</div>
+        </div>
+      </div>
+
+      <!-- right: contact form -->
+      <div class="form-card">
+        <div class="fs-head" style="margin-bottom:22px"><span class="fs-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v12H7l-3 3z" stroke-linejoin="round"/></svg></span><h3>Send us a message</h3></div>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="field"><label>Name <span class="req">*</span></label><input name="cName" required><span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Please enter your name</span></div>
+            <div class="field"><label>Phone</label><input type="tel" name="cPhone"></div>
+          </div>
+          <div class="field full"><label>Email <span class="req">*</span></label><input type="email" name="cEmail" required><span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Enter a valid email address</span></div>
+          <div class="field full"><label>How can we help? <span class="req">*</span></label><textarea name="cMsg" required placeholder="Tell us what you need moved, assembled or cleared…"></textarea><span class="msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>Please add a short message</span></div>
+          <div class="consent" id="cConsentWrap">
+            <input type="checkbox" id="cConsent">
+            <label for="cConsent">I accept the <a data-goto="contact">privacy policy</a>. <span class="req">*</span></label>
+          </div>
+          <div class="submit-row">
+            <button type="submit" class="btn btn-primary btn-lg" id="cSubmit"><span class="spinner"></span><span class="btn-label">Send message</span></button>
+          </div>
+        </form>
+        <div class="form-success" id="contactSuccess">
+          <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Message sent!</h3>
+          <p>Thanks for reaching out — we'll reply as soon as we can. For a faster answer, message us on WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="brand-name">NOV<b>A</b>RI</span>
+        <p class="footer-desc">NOVARI GbR — moving, furniture transport, assembly, carrying help and household clearances in Koblenz and the Mittelrhein region.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a data-goto="home">Home</a></li>
+          <li><a data-goto="services">Services</a></li>
+          <li><a data-goto="home" data-scroll="how">How It Works</a></li>
+          <li><a data-goto="home" data-scroll="area">Service Area</a></li>
+          <li><a data-goto="contact">Contact</a></li>
+          <li><a data-goto="quote">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a data-goto="services">Residential &amp; business moves</a></li>
+          <li><a data-goto="services">Furniture transport</a></li>
+          <li><a data-goto="services">Assembly &amp; disassembly</a></li>
+          <li><a data-goto="services">Household clearances</a></li>
+          <li><a data-goto="services">Carrying assistance</a></li>
+          <li><a data-goto="services">Small jobs &amp; handyman</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="contact-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.2 4.3-1.1A10 10 0 1 0 12 2z"/></svg><span>WhatsApp <b>0173 9523061</b></span></div>
+        <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 12l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 0-2z" stroke-linejoin="round"/></svg><span>Phone <b>0178 5129865</b></span></div>
+        <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6" stroke-linecap="round"/></svg><span><b>Novari2026@yahoo.com</b></span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NOVARI GbR · Koblenz, Deutschland</span>
+      <span><a data-goto="contact">Impressum</a> · <a data-goto="contact">Datenschutzerklärung</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Page routing ---------- */
+const pages = ['home','services','quote','contact'];
+function showPage(name, scrollId){
+  if(!pages.includes(name)) name='home';
+  pages.forEach(p=>document.getElementById('page-'+p).classList.toggle('active', p===name));
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.goto===name && !a.dataset.scroll);
+  });
+  closeMobile();
+  if(scrollId){
+    requestAnimationFrame(()=>{const el=document.getElementById(scrollId); if(el) el.scrollIntoView({behavior:'smooth',block:'start'});});
+  } else {
+    window.scrollTo({top:0,behavior:'auto'});
+  }
+}
+document.addEventListener('click', e=>{
+  const t = e.target.closest('[data-goto]');
+  if(t){ e.preventDefault(); showPage(t.dataset.goto, t.dataset.scroll); }
+});
+
+/* ---------- Mobile menu ---------- */
+const mob = document.getElementById('mobileNav');
+function openMobile(){mob.classList.add('open');document.body.style.overflow='hidden';}
+function closeMobile(){mob.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('openMenu').addEventListener('click', openMobile);
+document.getElementById('closeMenu').addEventListener('click', closeMobile);
+mob.addEventListener('click', e=>{if(e.target===mob) closeMobile();});
+
+/* ---------- Header shadow ---------- */
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled', scrollY>8));
+
+/* ---------- Segmented yes/no ---------- */
+document.querySelectorAll('.seg').forEach(seg=>{
+  seg.addEventListener('click', e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    seg.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const hidden=seg.parentElement.querySelector('input[type=hidden]');
+    if(hidden) hidden.value=b.dataset.val;
+  });
+});
+
+/* ---------- File upload ---------- */
+const dz=document.getElementById('dropzone'), fi=document.getElementById('fileInput'), fl=document.getElementById('fileList');
+let files=[];
+function renderFiles(){
+  fl.innerHTML='';
+  files.forEach((f,i)=>{
+    const row=document.createElement('div'); row.className='file-item';
+    row.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="M8 13l3-3 3 4 2-2 2 3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>'+f.name+'</span><span style="color:var(--slate-2)">'+(f.size/1024/1024).toFixed(1)+' MB</span><button type="button" class="rm" aria-label="Remove">&times;</button>';
+    row.querySelector('.rm').onclick=()=>{files.splice(i,1);renderFiles();};
+    fl.appendChild(row);
+  });
+}
+if(dz){
+  dz.addEventListener('click',()=>fi.click());
+  dz.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fi.click();}});
+  fi.addEventListener('change',()=>{files=files.concat([...fi.files]);renderFiles();});
+  ['dragover','dragenter'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add('dragover');}));
+  ['dragleave','drop'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove('dragover');}));
+  dz.addEventListener('drop',e=>{files=files.concat([...e.dataTransfer.files]);renderFiles();});
+}
+
+/* ---------- Validation helper ---------- */
+function validate(form, extra){
+  let ok=true;
+  form.querySelectorAll('[required]').forEach(inp=>{
+    const field=inp.closest('.field'); let bad=!inp.value.trim();
+    if(inp.type==='email' && inp.value.trim()) bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value);
+    if(field) field.classList.toggle('error', bad);
+    if(bad) ok=false;
+  });
+  if(extra) ok = extra() && ok;
+  return ok;
+}
+// clear error on input
+document.addEventListener('input', e=>{const f=e.target.closest('.field'); if(f) f.classList.remove('error');});
+
+/* ---------- Quote form submit ---------- */
+const qForm=document.getElementById('quoteForm');
+if(qForm){
+  const btn=document.getElementById('submitBtn');
+  const consentWrap=document.getElementById('consentWrap'), consent=document.getElementById('consent');
+  consent.addEventListener('change',()=>consentWrap.classList.toggle('error',!consent.checked));
+  qForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const ok=validate(qForm,()=>{const c=consent.checked;consentWrap.classList.toggle('error',!c);return c;});
+    if(!ok){ qForm.querySelector('.error')?.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+    btn.classList.add('loading'); btn.disabled=true;
+    setTimeout(()=>{
+      btn.classList.remove('loading'); btn.disabled=false;
+      qForm.style.display='none';
+      document.getElementById('formSuccess').classList.add('show');
+      document.getElementById('formSuccess').scrollIntoView({behavior:'smooth',block:'center'});
+    },1600);
+  });
+  document.getElementById('resetForm').addEventListener('click',()=>{
+    qForm.reset(); files=[]; renderFiles();
+    qForm.style.display=''; document.getElementById('formSuccess').classList.remove('show');
+    qForm.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
+/* ---------- Contact form submit ---------- */
+const cForm=document.getElementById('contactForm');
+if(cForm){
+  const cBtn=document.getElementById('cSubmit');
+  const cWrap=document.getElementById('cConsentWrap'), cChk=document.getElementById('cConsent');
+  cChk.addEventListener('change',()=>cWrap.classList.toggle('error',!cChk.checked));
+  cForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const ok=validate(cForm,()=>{const c=cChk.checked;cWrap.classList.toggle('error',!c);return c;});
+    if(!ok){ cForm.querySelector('.error')?.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+    cBtn.classList.add('loading'); cBtn.disabled=true;
+    setTimeout(()=>{
+      cBtn.classList.remove('loading'); cBtn.disabled=false;
+      cForm.style.display='none';
+      document.getElementById('contactSuccess').classList.add('show');
+    },1400);
+  });
+}
+</script>
+</body>
+</html>

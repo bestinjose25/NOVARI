@@ -1,0 +1,517 @@
+{
+  "header": {
+    "home": "Startseite",
+    "services": "Leistungen",
+    "howItWorks": "Wie wir arbeiten",
+    "serviceArea": "Einsatzgebiet",
+    "contact": "Kontakt",
+    "quote": "Angebot anfragen",
+    "language": "Sprache"
+  },
+
+  "hero": {
+    "badge": "Für Koblenz & die Mittelrhein-Region",
+    "location": "NOVARI · Koblenz",
+    "available24": "24/7 erreichbar",
+    "title": "Umziehen mit einem",
+    "highlight": "Lächeln.",
+    "mainDescription" : "Umziehen ohne Stress — NOVARI macht’s möglich.",
+    "description": "Vom verpackten Karton bis zum montierten Möbelstück: Wir kümmern uns um Privat- und Firmenumzüge, Transporte, Entrümpelungen und professionelle Montagearbeit. Lehnen Sie sich zurück!",
+    "quoteButton": "Kostenloses Angebot",
+    "servicesButton": "Leistungen ansehen",
+    "townsNumber": "7+",
+    "towns": "Orte im Einsatzgebiet",
+    "appointmentsNumber": "Kurzfristig",
+    "appointments": "Termine möglich*",
+    "pricingNumber": "Fest",
+    "pricing": "transparente Preise"
+  },
+
+  "services": {
+    "eyebrow": "Unsere Leistungen",
+    "title": "Alles für Ihren Umzug — aus einer Hand",
+    "description": "Vom einzelnen Sofa innerhalb der Stadt bis zum kompletten Wohnungs- oder Firmenumzug — inklusive Montage und Entrümpelung.",
+    "learnMore": "Mehr erfahren",
+
+    "items": {
+      "moving": {
+        "title": "Privat- & Firmenumzüge",
+        "description": "Lokale und überregionale Umzüge für Privathaushalte und Unternehmen."
+      },
+      "transport": {
+        "title": "Möbeltransport",
+        "description": "Sofas, Betten, Schränke, Haushaltsgeräte, Tische und weitere Möbelstücke."
+      },
+      "assembly": {
+        "title": "Montage & Demontage",
+        "description": "Betten, Schränke, Küchen, Schränke und andere Möbel fachgerecht auf- oder abbauen."
+      },
+      "clearance": {
+        "title": "Haushaltsauflösungen & Entrümpelungen",
+        "description": "Entrümpelung von Wohnungen, Kellern, Häusern und Geschäftsräumen."
+      },
+      "carrying": {
+        "title": "Tragehilfe",
+        "description": "Unterstützung bei schweren Möbeln, Haushaltsgeräten, Umzugskartons und sperrigen Gegenständen."
+      }
+    }
+  },
+
+  "why": {
+    "eyebrow": "Warum NOVARI",
+    "title": "Zuverlässige Hände für Ihren Umzug",
+    "description": "Wir behandeln Ihre Sachen wie unsere eigenen — und sind pünktlich.",
+
+    "items": {
+      "reliable": {
+        "title": "Zuverlässiger Service",
+        "description": "Was wir vereinbaren, halten wir auch — keine Überraschungen am Umzugstag."
+      },
+      "careful": {
+        "title": "Sorgfältiger Umgang",
+        "description": "Möbel und empfindliche Gegenstände werden sicher geschützt und transportiert."
+      },
+      "flexible": {
+        "title": "Flexible Terminplanung",
+        "description": "Abend- und Wochenendtermine sind nach Absprache möglich."
+      },
+      "pricing": {
+        "title": "Faire, transparente Preise",
+        "description": "Klare Angebote im Voraus — Sie kennen die Kosten vor Beginn."
+      },
+      "shortNotice": {
+        "title": "Kurzfristige Termine",
+        "description": "Termine innerhalb derselben Woche, wenn unser Zeitplan es ermöglicht."
+      },
+      "punctual": {
+        "title": "Pünktlich & erfahren",
+        "description": "Ein erfahrenes Team, das pünktlich kommt und effizient arbeitet."
+      }
+    }
+  },
+
+  "how": {
+    "eyebrow": "So funktioniert's",
+    "title": "Fünf Schritte zu Ihrem Angebot",
+    "description": "Senden Sie uns einige Angaben und Fotos — wir planen den Transport und erstellen Ihr Angebot.",
+    "startQuote": "Angebot starten",
+
+    
+    "steps": {
+      "photos": {
+        "title": "Fotos oder Videos senden",
+        "description": "Zeigen Sie uns die Möbel oder Gegenstände, die transportiert werden sollen."
+      },
+      "destination": {
+        "title": "Abhol- & Zieladresse",
+        "description": "Teilen Sie uns mit, wo der Transport beginnt und endet."
+      },
+      "access": {
+        "title": "Zugangsinformationen",
+        "description": "Etage, Aufzug und Besonderheiten beim Zugang.",
+        "floor": "Etage",
+        "elevator": "Aufzug"
+      },
+      "date": {
+        "title": "Wunschtermin",
+        "description": "Nennen Sie uns Ihren bevorzugten Umzugs- oder Transporttermin."
+      },
+      "quote": {
+        "title": "Angebot erhalten",
+        "description": "Wir prüfen Ihre Angaben und senden Ihnen ein Angebot."
+      }
+    }
+  },
+
+  "area": {
+  "eyebrow": "Wo wir arbeiten",
+  "title": "In Koblenz zu Hause, in der Region unterwegs",
+  "description": "Wir sind in Koblenz und den umliegenden Orten der Mittelrhein-Region für Sie unterwegs — und übernehmen auch Fernumzüge.",
+
+  "cities": {
+    "koblenz": "Koblenz",
+    "andernach": "Andernach",
+    "neuwied": "Neuwied",
+    "mayen": "Mayen",
+    "bendorf": "Bendorf",
+    "weissenthurm": "Weißenthurm",
+    "muelheimKaerlich": "Mülheim-Kärlich"
+  },
+
+  "note": "Umliegende Orte sowie Nah- und Fernumzüge — fragen Sie uns einfach."
+},
+
+  "cta": {
+  "title": "Planen Sie einen Umzug? NOVARI übernimmt die schwere Arbeit.",
+  "quote": "Angebot anfragen",
+  "whatsapp": "WhatsApp",
+  "call": "Jetzt anrufen"
+  },
+
+  "footer": {
+    "description": "NOVARI GbR — Umzüge, Möbeltransport, Montage, Tragehilfe und Haushaltsauflösungen in Koblenz und der Mittelrhein-Region.",
+    "navigation": "Navigation",
+    "services": "Leistungen",
+    "contact": "Kontakt",
+    "whatsapp": "WhatsApp",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "impressum": "Impressum",
+    "privacy": "Datenschutzerklärung",
+    "copyright": "NOVARI GbR · Koblenz, Deutschland"
+  },
+
+  "servicesPage": {
+  "hero": {
+    "eyebrow": "Unsere Leistungen",
+    "title": "Von einem einzelnen Möbelstück bis zum kompletten Haushalt",
+    "description": "Ganz gleich, ob es sich um einen einzelnen Schrank, eine komplette Wohnung, einen Firmenumzug oder eine Kellerentrümpelung handelt — wir bringen Fahrzeug, Werkzeug und die notwendige Unterstützung mit."
+  },
+
+  "requestButton": "Diesen Service anfragen",
+
+  "items": {
+    "moving": {
+      "category": "Umzüge",
+      "title": "Privat- & Firmenumzüge",
+      "description": "Nah- und Fernumzüge für Privathaushalte und Unternehmen — geplant, verpackt und zuverlässig von Tür zu Tür transportiert.",
+      "tags": [
+        "Privatumzüge",
+        "Firmenumzüge",
+        "Nahumzüge",
+        "Fernumzüge"
+      ]
+    },
+
+    "transport": {
+      "category": "Transport",
+      "title": "Möbeltransporte",
+      "description": "Einzelne Möbelstücke oder komplette Ladungen werden sicher gepolstert, befestigt und transportiert.",
+      "tags": [
+        "Sofas & Couches",
+        "Betten & Matratzen",
+        "Schränke",
+        "Haushaltsgeräte",
+        "Tische"
+      ]
+    },
+
+    "assembly": {
+      "category": "Montage",
+      "title": "Möbelmontage & Demontage",
+      "description": "Fachgerechter Auf- und Abbau von Möbeln — einschließlich IKEA- und POCO-Möbeln.",
+      "tags": [
+        "Betten & Schränke",
+        "Küchen & Schränke",
+        "IKEA Montage",
+        "POCO Montage"
+      ]
+    },
+
+    "clearance": {
+      "category": "Entrümpelung",
+      "title": "Haushaltsauflösung & Entrümpelung",
+      "description": "Wohnungen, Keller, Häuser und Geschäftsräume werden zuverlässig geräumt, sortiert und sauber hinterlassen.",
+      "tags": [
+        "Wohnungsräumung",
+        "Kellerräumung",
+        "Hausräumung",
+        "Entrümpelung"
+      ]
+    },
+
+    "support": {
+      "category": "Unterstützung",
+      "title": "Tragehilfe & kleine handwerkliche Arbeiten",
+      "description": "Zusätzliche Hilfe für schwere Gegenstände sowie kleinere praktische Arbeiten, die bei einem Umzug anfallen.",
+      "tags": [
+        "Schwere Möbel",
+        "Haushaltsgeräte",
+        "Umzugskartons",
+        "Kleine Reparaturen",
+        "Handwerkliche Hilfe"
+      ]
+    }
+  },
+
+  "cta": {
+    "title": "Nicht sicher, welchen Service Sie benötigen? Fragen Sie uns einfach.",
+    "quote": "Angebot anfragen",
+    "contact": "Kontakt aufnehmen"
+  }
+},
+
+"contactPage": {
+  "hero": {
+    "eyebrow": "Kontakt",
+    "title": "NOVARI kontaktieren",
+    "description": "Am schnellsten erreichen Sie uns per WhatsApp oder telefonisch — alternativ können Sie uns eine Nachricht senden und wir melden uns bei Ihnen."
+  },
+
+  "cards": {
+    "whatsapp": {
+      "label": "WhatsApp",
+      "description": "Direkt schreiben und Fotos Ihrer Gegenstände senden."
+    },
+
+    "phone": {
+      "label": "Telefon",
+      "description": "Sie möchten Ihr Anliegen persönlich besprechen? Rufen Sie uns an."
+    },
+
+    "email": {
+      "label": "E-Mail",
+      "description": "Senden Sie uns die Details und wir antworten per E-Mail."
+    },
+
+    "area": {
+      "label": "Einsatzgebiet",
+      "title": "Koblenz & Umgebung",
+      "description": "Andernach · Neuwied · Mayen · Bendorf · Weißenthurm."
+    }
+  },
+
+  "hours": {
+    "title": "Geschäftszeiten",
+    "weekdays": "Montag – Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag",
+    "appointment": "Nach Vereinbarung"
+  },
+
+  "map": {
+    "caption": "Unser Standort ist Koblenz — wir bedienen auch die umliegende Region."
+  },
+
+  "form": {
+    "title": "Nachricht senden",
+    "name": "Name",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "message": "Wie können wir Ihnen helfen?",
+    "messagePlaceholder": "Beschreiben Sie, was transportiert, montiert oder geräumt werden soll…",
+    "consentBefore": "Ich akzeptiere die",
+    "privacy": "Datenschutzerklärung",
+    "consentAfter": ".",
+    "submit": "Nachricht senden",
+    "submitError": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+
+    "errors": {
+      "name": "Bitte geben Sie Ihren Namen ein",
+      "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "message": "Bitte geben Sie eine kurze Nachricht ein"
+    }
+  },
+
+  "success": {
+    "title": "Nachricht gesendet!",
+    "description": "Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich. Für eine schnellere Antwort können Sie uns auch über WhatsApp kontaktieren."
+  }
+},
+
+"quotePage": {
+  "hero": {
+    "eyebrow": "Kostenlos & unverbindlich",
+    "title": "Angebot anfragen",
+    "description": "Füllen Sie die Informationen aus, die Ihnen bekannt sind — je mehr Details und Fotos Sie hinzufügen, desto schneller und genauer können wir Ihr Angebot erstellen."
+  },
+
+  "personal": {
+    "title": "Persönliche Informationen",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefonnummer",
+    "service": "Art der Dienstleistung"
+  },
+
+  "services": {
+    "choose": "Dienstleistung auswählen…",
+    "residential": "Privatumzug",
+    "business": "Firmenumzug",
+    "transport": "Möbeltransport",
+    "assembly": "Möbelmontage / Demontage",
+    "clearance": "Haushaltsauflösung / Entrümpelung",
+    "carrying": "Tragehilfe",
+    "unknown": "Noch nicht sicher"
+  },
+
+  "pickup": {
+    "title": "Abholinformationen",
+    "address": "Abholadresse"
+  },
+
+  "destination": {
+    "title": "Zielinformationen",
+    "address": "Zieladresse"
+  },
+
+  "common": {
+    "streetPlaceholder": "Straße und Hausnummer",
+    "city": "Stadt",
+    "postalCode": "Postleitzahl",
+    "floor": "Etage",
+    "floorPlaceholder": "z. B. 3",
+    "floorPlaceholderDestination": "z. B. 1",
+    "elevator": "Aufzug vorhanden?",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+
+  "details": {
+    "title": "Umzugsdetails",
+    "date": "Wunschtermin",
+    "items": "Zu transportierende Gegenstände",
+    "itemsPlaceholder": "z. B. Sofa, 2 Schränke, 15 Kartons",
+    "additional": "Zusätzliche Informationen",
+    "additionalPlaceholder": "Enges Treppenhaus, Parkplatz, Demontage erforderlich, zerbrechliche Gegenstände…"
+  },
+
+  "photos": {
+    "title": "Fotos / zusätzliche Informationen",
+    "upload": "Fotos oder Videos hochladen",
+    "description": "Dateien hier ablegen oder zum Auswählen klicken · JPG, PNG, MP4 bis 25 MB pro Datei",
+    "remove": "Datei entfernen"
+  },
+
+  "consent": {
+    "before": "Ich akzeptiere die",
+    "privacy": "Datenschutzerklärung",
+    "after": "und stimme zu, bezüglich meiner Anfrage kontaktiert zu werden."
+  },
+
+  "submit": {
+    "button": "Angebot anfragen",
+    "sending": "Wird gesendet...",
+    "note": "Unverbindlich · normalerweise Antwort innerhalb von 24 Stunden"
+  },
+
+  "errors": {
+    "firstName": "Bitte geben Sie Ihren Vornamen ein",
+    "lastName": "Bitte geben Sie Ihren Nachnamen ein",
+    "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "phone": "Bitte geben Sie Ihre Telefonnummer ein",
+    "service": "Bitte wählen Sie eine Dienstleistung aus"
+  },
+
+  "aside": {
+    "title": "Planen Sie einen Umzug? Wir helfen Ihnen.",
+    "description": "Das erhalten Sie, wenn Sie eine Anfrage an NOVARI senden:",
+    "quote": "Schnelles, unverbindliches Angebot",
+    "flexible": "Flexible Termine",
+    "transport": "Möbeltransport & Montage",
+    "clearance": "Haushaltsauflösung",
+    "carrying": "Tragehilfe",
+    "phone": "Telefon",
+    "email": "E-Mail"
+  },
+
+  "success": {
+    "title": "Anfrage erhalten — vielen Dank!",
+    "description": "Wir haben Ihre Angaben erhalten und melden uns in der Regel innerhalb von 24 Stunden mit einem Angebot. Bei dringenden Fragen erreichen Sie uns über WhatsApp oder telefonisch.",
+    "whatsapp": "WhatsApp",
+    "another": "Weitere Anfrage senden"
+  }
+},
+
+"privacyPage": {
+  "hero": {
+    "eyebrow": "Datenschutz",
+    "title": "Datenschutzerklärung",
+    "description": "Informationen darüber, wie NOVARI personenbezogene Daten beim Besuch unserer Website und bei der Kontaktaufnahme verarbeitet."
+  },
+
+  "controller": {
+    "title": "Verantwortlicher für die Datenverarbeitung",
+    "description": "Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist:",
+    "addressPlaceholder": "[Vollständige Geschäftsanschrift von NOVARI eintragen]",
+    "email": "E-Mail",
+    "phone": "Telefon"
+  },
+
+  "general": {
+    "title": "Allgemeine Hinweise",
+    "text1": "Wir verarbeiten personenbezogene Daten nur, soweit dies für den Betrieb dieser Website, die Bearbeitung von Anfragen und die Erbringung unserer Dienstleistungen erforderlich ist.",
+    "text2": "Personenbezogene Daten sind Informationen, durch die Sie direkt oder indirekt identifiziert werden können, beispielsweise Name, E-Mail-Adresse, Telefonnummer, IP-Adresse oder Angaben aus unseren Formularen."
+  },
+
+  "hosting": {
+    "title": "Hosting und Server-Log-Dateien",
+    "text1": "Beim Besuch dieser Website kann der Hosting-Anbieter automatisch technische Informationen wie IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Zugriffs sowie aufgerufene Seiten erfassen.",
+    "text2": "Diese Daten werden in der Regel verarbeitet, um einen sicheren und zuverlässigen Betrieb der Website zu gewährleisten.",
+    "notice": "Der endgültige Hosting-Anbieter und die dazugehörigen Datenschutzinformationen werden ergänzt, sobald das Hosting festgelegt wurde."
+  },
+
+  "contact": {
+    "title": "Kontakt per E-Mail oder Telefon",
+    "text1": "Wenn Sie NOVARI per E-Mail oder Telefon kontaktieren, verarbeiten wir die von Ihnen übermittelten Angaben zur Bearbeitung Ihrer Anfrage und zur Erbringung der gewünschten Dienstleistung.",
+    "text2": "Die Daten werden nur so lange gespeichert, wie dies für die Bearbeitung der Anfrage und zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist."
+  },
+
+  "forms": {
+    "title": "Kontakt- und Angebotsformulare",
+    "text1": "Bei einer Kontakt- oder Angebotsanfrage können wir Ihren Namen, Ihre E-Mail-Adresse, Telefonnummer, die gewünschte Dienstleistung, Abhol- und Zielinformationen sowie weitere von Ihnen angegebene Informationen verarbeiten.",
+    "text2": "Diese Angaben verwenden wir zur Bearbeitung Ihrer Anfrage, zur Kommunikation mit Ihnen und zur Erstellung eines Angebots.",
+    "text3": "Sobald die Backend-Funktionen aktiviert werden, werden hier auch die technischen Dienstleister für Übertragung und Speicherung der Formulardaten aufgeführt."
+  },
+
+  "uploads": {
+    "title": "Hochgeladene Fotos und Videos",
+    "text": "Wenn Sie Fotos oder Videos mit einer Angebotsanfrage hochladen, werden diese ausschließlich zur Beurteilung der angefragten Transport-, Umzugs-, Montage-, Entrümpelungs- oder sonstigen Dienstleistung verwendet. Bitte übermitteln Sie keine unnötigen personenbezogenen oder sensiblen Informationen."
+  },
+
+  "whatsapp": {
+    "title": "WhatsApp",
+    "text": "Unsere Website enthält Links, über die Sie NOVARI über WhatsApp kontaktieren können. Beim Öffnen eines solchen Links verlassen Sie unsere Website und es gelten die Datenschutzbestimmungen von WhatsApp und dessen Anbieter."
+  },
+
+  "maps": {
+    "title": "Karten und OpenStreetMap",
+    "text": "Wenn interaktive Karten oder Kartendaten von externen Anbietern wie OpenStreetMap geladen werden, können technische Informationen einschließlich Ihrer IP-Adresse zur Darstellung der Karte an den jeweiligen Anbieter übertragen werden."
+  },
+
+  "fonts": {
+    "title": "Webfonts",
+    "text": "Diese Website verwendet Archivo und Hanken Grotesk. Werden diese Schriftarten von einem externen Anbieter wie Google Fonts geladen, kann eine Verbindung zu diesem Anbieter hergestellt werden. Für den Produktivbetrieb ist eine lokale Bereitstellung der Schriftarten nach Möglichkeit vorzuziehen."
+  },
+
+  "storage": {
+    "title": "Lokaler Speicher und Spracheinstellung",
+    "text": "Die von Ihnen gewählte Sprache kann im lokalen Speicher Ihres Browsers gespeichert werden, damit die bevorzugte Sprache bei späteren Besuchen wiederhergestellt werden kann. Diese Information wird lokal in Ihrem Browser gespeichert."
+  },
+
+  "rights": {
+    "title": "Ihre Datenschutzrechte",
+    "intro": "Nach Maßgabe der gesetzlichen Voraussetzungen stehen Ihnen insbesondere folgende Rechte zu:",
+    "access": "Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten.",
+    "rectification": "Recht auf Berichtigung unrichtiger Daten.",
+    "erasure": "Recht auf Löschung personenbezogener Daten.",
+    "restriction": "Recht auf Einschränkung der Verarbeitung.",
+    "portability": "Recht auf Datenübertragbarkeit, soweit anwendbar.",
+    "objection": "Recht auf Widerspruch gegen bestimmte Verarbeitungen.",
+    "withdrawal": "Recht, eine erteilte Einwilligung mit Wirkung für die Zukunft zu widerrufen."
+  },
+
+  "complaint": {
+    "title": "Beschwerderecht",
+    "text": "Sie haben das Recht, sich bei einer zuständigen Datenschutzaufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen geltendes Datenschutzrecht verstößt."
+  },
+
+  "changes": {
+    "title": "Änderungen dieser Datenschutzerklärung",
+    "text": "Wir können diese Datenschutzerklärung anpassen, wenn sich die Website, unsere Dienstleistungen oder die rechtlichen Anforderungen ändern.",
+    "updated": "Stand: September 2026"
+  },
+
+  "aside": {
+    "title": "Fragen zum Datenschutz?",
+    "description": "Kontaktieren Sie NOVARI, wenn Sie Fragen zur Verarbeitung Ihrer personenbezogenen Daten haben.",
+    "email": "E-Mail",
+    "phone": "Telefon"
+  }
+}
+
+  
+}
+
+

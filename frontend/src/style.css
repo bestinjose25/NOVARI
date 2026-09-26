@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --ink: #0C272B;
+  --teal: #0E5A63;
+  --teal-deep: #0A464D;
+  --amber: #F49B1C;
+  --amber-dark: #E08A08;
+
+  --paper: #F4F6F5;
+  --paper-2: #EAEFEE;
+  --card: #FFFFFF;
+
+  --line: #D8E1E0;
+
+  --slate: #526468;
+  --slate-2: #6E7F82;
+
+  --ok: #1E8A5B;
+  --err: #C0362C;
+
+  --display: "Archivo", system-ui, sans-serif;
+  --body: "Hanken Grotesk", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-stretch: 118%;
+  line-height: 1.03;
+  letter-spacing: -0.01em;
+}
