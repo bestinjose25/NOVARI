@@ -2,7 +2,8 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
-
+import os
+import dj_database_url
 
 # ---------------------------------------------------------
 # BASE DIRECTORY
@@ -22,11 +23,21 @@ SECRET_KEY = os.getenv(
     'django-insecure-change-this-later'
 )
 
-DEBUG = True
+DEBUG = (
+    os.getenv(
+        'DEBUG',
+        'True'
+    ).lower()
+    == 'true'
+)
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
+    host.strip()
+    for host in os.getenv(
+        'ALLOWED_HOSTS',
+        '127.0.0.1,localhost'
+    ).split(',')
+    if host.strip()
 ]
 
 
@@ -55,13 +66,22 @@ INSTALLED_APPS = [
 # ---------------------------------------------------------
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
+
     'django.middleware.common.CommonMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
+
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
+
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -201,7 +221,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # ---------------------------------------------------------
 # DEFAULT PRIMARY KEY
 # ---------------------------------------------------------
@@ -214,11 +234,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ---------------------------------------------------------
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-
-    'http://localhost:5174',
-    'http://127.0.0.1:5174',
+    origin.strip()
+    for origin in os.getenv(
+        'CORS_ALLOWED_ORIGINS',
+        'http://localhost:5173'
+    ).split(',')
+    if origin.strip()
 ]
 
 
@@ -283,3 +304,7 @@ SITE_URL = os.getenv(
 )
 
 
+SECURE_PROXY_SSL_HEADER = (
+    'HTTP_X_FORWARDED_PROTO',
+    'https'
+)
