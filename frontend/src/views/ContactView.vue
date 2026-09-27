@@ -413,9 +413,11 @@ const submitForm = async () => {
           </div>
 
 
+
           <!-- =================================
-               BUSINESS HOURS
+              BUSINESS HOURS
           ================================== -->
+
           <div class="business-hours">
 
             <h4>
@@ -448,37 +450,13 @@ const submitForm = async () => {
             <div class="hours-row">
 
               <span>
-                {{ t('contactPage.hours.weekdays') }}
+                {{ t('contactPage.hours.everyDay') }}
               </span>
 
-              <span>
-                08:00 – 19:00
-              </span>
+              <span class="open-24">
+                <span class="open-dot"></span>
 
-            </div>
-
-
-            <div class="hours-row">
-
-              <span>
-                {{ t('contactPage.hours.saturday') }}
-              </span>
-
-              <span>
-                09:00 – 16:00
-              </span>
-
-            </div>
-
-
-            <div class="hours-row closed">
-
-              <span>
-                {{ t('contactPage.hours.sunday') }}
-              </span>
-
-              <span>
-                {{ t('contactPage.hours.appointment') }}
+                {{ t('contactPage.hours.open24') }}
               </span>
 
             </div>
@@ -1597,6 +1575,29 @@ span:last-child {
   color: var(--slate);
 }
 
+
+.open-24 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 700;
+  color: #1e8a5b;
+}
+
+.open-dot {
+  width: 9px;
+  height: 9px;
+
+  flex-shrink: 0;
+
+  border-radius: 999px;
+
+  background: #1e8a5b;
+
+  box-shadow:
+    0 0 0 4px rgba(30, 138, 91, 0.12);
+}
 
 /* =========================================
    RESPONSIVE

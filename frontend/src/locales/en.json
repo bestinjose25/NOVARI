@@ -269,17 +269,15 @@
     "area": {
       "label": "Service area",
       "title": "Koblenz & region",
-      "description": "Andernach · Neuwied · Mayen · Bendorf · Weißenthurm."
+      "description": "Andernach · Neuwied · Mayen · Bendorf · Weißenthurm · Mülheim-Kärlich."
     }
   },
 
-  "hours": {
-    "title": "Business hours",
-    "weekdays": "Monday – Friday",
-    "saturday": "Saturday",
-    "sunday": "Sunday",
-    "appointment": "By appointment"
-  },
+"hours": {
+  "title": "Business Hours",
+  "everyDay": "Every day",
+  "open24": "Open 24 hours"
+},
 
   "map": {
     "caption": "Based in Koblenz — serving the surrounding region."

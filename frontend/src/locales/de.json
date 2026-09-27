@@ -267,17 +267,15 @@
     "area": {
       "label": "Einsatzgebiet",
       "title": "Koblenz & Umgebung",
-      "description": "Andernach · Neuwied · Mayen · Bendorf · Weißenthurm."
+      "description": "Andernach · Neuwied · Mayen · Bendorf · Weißenthurm · Mülheim-Kärlich."
     }
   },
 
-  "hours": {
-    "title": "Geschäftszeiten",
-    "weekdays": "Montag – Freitag",
-    "saturday": "Samstag",
-    "sunday": "Sonntag",
-    "appointment": "Nach Vereinbarung"
-  },
+"hours": {
+  "title": "Geschäftszeiten",
+  "everyDay": "Täglich",
+  "open24": "24 Stunden geöffnet"
+},
 
   "map": {
     "caption": "Unser Standort ist Koblenz — wir bedienen auch die umliegende Region."

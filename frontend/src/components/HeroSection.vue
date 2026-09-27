@@ -172,7 +172,7 @@ import homeImage from '../assets/images/HomeImage.jpeg'
         >
           {{ t('hero.title') }}
           <span class="text-teal-700">
-            {{ t('hero.highlight') }}.
+            {{ t('hero.highlight') }}
           </span>
         </h1>
 
