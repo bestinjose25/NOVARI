@@ -50,6 +50,7 @@ class QuoteRequestAdmin(
         'phone',
         'pickup_city',
         'destination_city',
+        'referral_source',
     )
 
     readonly_fields = (

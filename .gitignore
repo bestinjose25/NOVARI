@@ -18,3 +18,11 @@ __pycache__/
 # OS / editor
 .DS_Store
 .vscode/
+
+# Local development tools and data
+.local-tools/
+node_modules/
+backend/db.sqlite3
+
+# Local email previews
+backend/.local-emails/

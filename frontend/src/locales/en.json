@@ -333,6 +333,7 @@
     "assembly": "Furniture assembly / disassembly",
     "clearance": "Household clearance",
     "carrying": "Carrying assistance",
+    "handyman": "Small job / handyman",
     "unknown": "Not sure yet"
   },
 
@@ -367,12 +368,25 @@
     "additionalPlaceholder": "Narrow staircase, parking, disassembly needed, fragile items…"
   },
 
+  "referral": {
+    "title": "How did you hear about us?",
+    "label": "Where did you hear about NOVARI? (optional)",
+    "choose": "Please choose…",
+    "options": {
+        "website": "NOVARI website",
+        "recommendation": "Recommendation from friends or family",
+        "flyer": "Flyer",
+        "newspaper": "Newspaper",
+        "other": "Other"
+    }
+},
+
   "photos": {
     "title": "Photos / additional information",
     "upload": "Upload photos or videos",
     "description": "Drag & drop, or click to browse · JPG, PNG, MP4 up to 25 MB each",
     "remove": "Remove file"
-  },
+},
 
   "consent": {
     "before": "I accept the",
@@ -387,6 +401,7 @@
   },
 
   "errors": {
+    "consent": "Please accept the privacy policy",
     "firstName": "Please enter your first name",
     "lastName": "Please enter your last name",
     "email": "Enter a valid email address",

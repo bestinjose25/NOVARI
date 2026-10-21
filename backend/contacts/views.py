@@ -6,6 +6,7 @@ from rest_framework.response import Response
 
 from config.email_utils import (
     send_contact_notification,
+    send_contact_acknowledgement,
 )
 
 from .serializers import (
@@ -49,12 +50,24 @@ def create_contact_request(request):
             )
 
 
+        customer_email_sent = True
+        try:
+            send_contact_acknowledgement(contact)
+        except Exception:
+            customer_email_sent = False
+            logger.exception(
+                'Contact acknowledgement email failed for contact ID %s',
+                contact.id,
+            )
+
         return Response(
             {
                 'success': True,
                 'message':
                     'Your message has been received.',
                 'email_sent': email_sent,
+                'owner_email_sent': email_sent,
+                'customer_email_sent': customer_email_sent,
             },
             status=status.HTTP_201_CREATED
         )

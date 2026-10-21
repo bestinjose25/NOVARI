@@ -1,7 +1,6 @@
 from django.conf import settings
 
 from django.core.mail import (
-    EmailMessage,
     EmailMultiAlternatives,
 )
 
@@ -110,7 +109,7 @@ Diese Anfrage wurde ebenfalls in der NOVARI-Datenbank gespeichert.
 """.strip()
 
 
-    email = EmailMessage(
+    email = EmailMultiAlternatives(
         subject=subject,
 
         body=message,
@@ -130,9 +129,46 @@ Diese Anfrage wurde ebenfalls in der NOVARI-Datenbank gespeichert.
     )
 
 
+    email.attach_alternative(
+        render_to_string('emails/contact_message.html', {
+            'contact': contact,
+            'submitted_at': submitted_at,
+            'is_owner': True,
+        }),
+        'text/html',
+    )
+
     email.send(
         fail_silently=False
     )
+
+
+def send_contact_acknowledgement(contact):
+    email = EmailMultiAlternatives(
+        subject=f'Ihre Nachricht bei NOVARI #{contact.id} wurde erhalten',
+        body=(
+            f'Hallo {contact.name},\n\n'
+            'vielen Dank für Ihre Nachricht an NOVARI. '
+            'Wir haben Ihre Kontaktanfrage erhalten und melden uns '
+            'schnellstmöglich bei Ihnen.\n\n'
+            f'Anfrage-Nr.: #{contact.id}\n\n'
+            f'Ihre Nachricht:\n{contact.message}\n\n'
+            'Sie können auf diese E-Mail antworten, um weitere Informationen '
+            'zu ergänzen.\n\nViele Grüße\nNOVARI GbR\nKoblenz'
+        ),
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[contact.email],
+        reply_to=[settings.NOVARI_NOTIFICATION_EMAIL],
+    )
+    email.attach_alternative(
+        render_to_string('emails/contact_message.html', {
+            'contact': contact,
+            'submitted_at': timezone.localtime(contact.created_at).strftime('%d.%m.%Y %H:%M'),
+            'is_owner': False,
+        }),
+        'text/html',
+    )
+    email.send(fail_silently=False)
 
 
 # ======================================================
@@ -324,6 +360,9 @@ Gegenstände:
 
 Zusätzliche Informationen:
 {quote.notes or '-'}
+
+Wie haben Sie von NOVARI erfahren?
+{quote.referral_source or '-'}
 
 
 DATEIEN

@@ -39,6 +39,7 @@ class QuoteRequestSerializer(serializers.ModelSerializer):
             'preferred_date',
             'items',
             'notes',
+            'referral_source',
 
             'consent_accepted',
 

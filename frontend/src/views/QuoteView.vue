@@ -42,6 +42,7 @@ const form = reactive({
   date: '',
   items: '',
   notes: '',
+  referralSource: '',
 
   // Consent
   consent: false,
@@ -314,6 +315,7 @@ const resetForm = () => {
   form.date = ''
   form.items = ''
   form.notes = ''
+  form.referralSource = ''
 
   form.consent = false
 
@@ -532,6 +534,8 @@ const submitForm = async () => {
       'notes',
       form.notes
     )
+
+    formData.append('referral_source', form.referralSource.trim())
 
 
     // ---------------------------
@@ -1378,15 +1382,37 @@ const submitForm = async () => {
 
 
 
+            <!-- 5. HOW DID YOU HEAR ABOUT US? -->
+            <fieldset class="fieldset">
+              <div class="fieldset-heading">
+                <span class="fieldset-number">5</span>
+                <h3>{{ t('quotePage.referral.title') }}</h3>
+              </div>
+              <div class="field full">
+                <label for="referral-source">{{ t('quotePage.referral.label') }}</label>
+                <select id="referral-source" v-model="form.referralSource">
+                  <option value="">{{ t('quotePage.referral.choose') }}</option>
+                  <option value="Google">Google</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="NOVARI Website">{{ t('quotePage.referral.options.website') }}</option>
+                  <option value="Empfehlung">{{ t('quotePage.referral.options.recommendation') }}</option>
+                  <option value="Flyer">{{ t('quotePage.referral.options.flyer') }}</option>
+                  <option value="Zeitung">{{ t('quotePage.referral.options.newspaper') }}</option>
+                  <option value="Sonstige">{{ t('quotePage.referral.options.other') }}</option>
+                </select>
+              </div>
+            </fieldset>
+
             <!-- ===============================
-                 5. PHOTOS
+                 6. PHOTOS
             ================================ -->
             <fieldset class="fieldset">
 
               <div class="fieldset-heading">
 
                 <span class="fieldset-number">
-                  5
+                  6
                 </span>
 
                 <h3>

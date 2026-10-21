@@ -120,6 +120,10 @@ class QuoteRequest(models.Model):
     # Consent / administration
     # ----------------------------
 
+    referral_source = models.CharField(
+        'How did you hear about us?', max_length=255, blank=True
+    )
+
     consent_accepted = models.BooleanField(
         default=False
     )

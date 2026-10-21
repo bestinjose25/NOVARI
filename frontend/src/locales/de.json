@@ -331,6 +331,7 @@
     "assembly": "Möbelmontage / Demontage",
     "clearance": "Haushaltsauflösung / Entrümpelung",
     "carrying": "Tragehilfe",
+    "handyman": "Kleinarbeiten / Handwerkerhilfe",
     "unknown": "Noch nicht sicher"
   },
 
@@ -365,12 +366,25 @@
     "additionalPlaceholder": "Enges Treppenhaus, Parkplatz, Demontage erforderlich, zerbrechliche Gegenstände…"
   },
 
+  "referral": {
+    "title": "Wie haben Sie von uns erfahren?",
+    "label": "Wie sind Sie auf NOVARI aufmerksam geworden? (optional)",
+    "choose": "Bitte auswählen…",
+    "options": {
+        "website": "NOVARI Website",
+        "recommendation": "Empfehlung von Freunden oder Familie",
+        "flyer": "Flyer",
+        "newspaper": "Zeitung",
+        "other": "Sonstige"
+    }
+},
+
   "photos": {
     "title": "Fotos / zusätzliche Informationen",
     "upload": "Fotos oder Videos hochladen",
     "description": "Dateien hier ablegen oder zum Auswählen klicken · JPG, PNG, MP4 bis 25 MB pro Datei",
     "remove": "Datei entfernen"
-  },
+},
 
   "consent": {
     "before": "Ich akzeptiere die",
@@ -385,6 +399,7 @@
   },
 
   "errors": {
+    "consent": "Bitte akzeptieren Sie die Datenschutzerklärung",
     "firstName": "Bitte geben Sie Ihren Vornamen ein",
     "lastName": "Bitte geben Sie Ihren Nachnamen ein",
     "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
