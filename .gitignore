@@ -7,6 +7,8 @@ frontend/.env.*
 # Backend
 backend/.venv/
 backend/.env
+backend/.env.*
+!backend/.env.example
 backend/__pycache__/
 backend/media/
 backend/staticfiles/
