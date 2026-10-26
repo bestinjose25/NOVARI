@@ -1,8 +1,32 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 import homeImage from '../assets/images/HomeImage.jpeg'
+import kitchenImage from '../assets/images/KitchenAssembly.jpeg'
+
+const slides = [
+  { image: homeImage, alt: 'hero.carousel.movingAlt' },
+  { image: kitchenImage, alt: 'hero.carousel.kitchenAlt' },
+]
+const activeSlide = ref(0)
+const playing = ref(false)
+const hovering = ref(false)
+const focused = ref(false)
+let timer
+
+function changeSlide(direction) {
+  activeSlide.value = (activeSlide.value + direction + slides.length) % slides.length
+}
+
+onMounted(() => {
+  playing.value = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  timer = window.setInterval(() => {
+    if (playing.value && !hovering.value && !focused.value && !document.hidden) changeSlide(1)
+  }, 6000)
+})
+onUnmounted(() => window.clearInterval(timer))
 </script>
 
 <template>
@@ -327,11 +351,62 @@ import homeImage from '../assets/images/HomeImage.jpeg'
       <!-- RIGHT SIDE -->
       <div>
 
-        <!-- Home moving image -->
-        <img
-          :src="homeImage"
-          alt="Moving boxes and a couple preparing for a move"
-          class="mx-auto h-[380px] w-full rounded-3xl object-cover"/>
+        <div
+          class="overflow-hidden rounded-3xl bg-white shadow-sm"
+          role="region"
+          aria-roledescription="carousel"
+          :aria-label="t('hero.carousel.label')"
+          @mouseenter="hovering = true"
+          @mouseleave="hovering = false"
+          @focusin="focused = true"
+          @focusout="focused = $event.currentTarget.contains($event.relatedTarget)"
+        >
+          <div class="relative h-[300px] sm:h-[380px]">
+            <img
+              v-for="(slide, index) in slides"
+              v-show="index === activeSlide"
+              :key="slide.image"
+              :src="slide.image"
+              :alt="t(slide.alt)"
+              width="1512"
+              height="1008"
+              class="h-full w-full object-cover"
+            >
+            <button
+              type="button"
+              :aria-label="t('hero.carousel.previous')"
+              class="absolute left-2 top-1/2 z-10 flex h-12 w-10 -translate-y-1/2 items-center justify-center rounded-lg bg-black/15 text-white hover:bg-black/35 focus-visible:outline-2 focus-visible:outline-white"
+              @click="changeSlide(-1)"
+            >
+              <svg aria-hidden="true" width="28" height="36" viewBox="0 0 24 32" fill="none"><path d="M17 6 7 16l10 10" stroke="currentColor" stroke-width="6" stroke-linejoin="miter" /></svg>
+            </button>
+            <button
+              type="button"
+              :aria-label="t('hero.carousel.next')"
+              class="absolute right-2 top-1/2 z-10 flex h-12 w-10 -translate-y-1/2 items-center justify-center rounded-lg bg-black/15 text-white hover:bg-black/35 focus-visible:outline-2 focus-visible:outline-white"
+              @click="changeSlide(1)"
+            >
+              <svg aria-hidden="true" width="28" height="36" viewBox="0 0 24 32" fill="none"><path d="m7 6 10 10L7 26" stroke="currentColor" stroke-width="6" stroke-linejoin="miter" /></svg>
+            </button>
+            <div class="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-2 bg-gradient-to-t from-black/85 via-black/60 to-transparent px-5 pb-4 pt-10 text-white">
+              <div>
+                <div class="flex items-center gap-2" dir="ltr">
+                  <span class="text-sm font-bold">Google</span>
+                  <span class="text-lg tracking-wider text-amber-400" aria-hidden="true">★★★★★</span>
+                </div>
+                <p class="mt-1 text-sm font-medium">{{ t('hero.review.shortText') }}</p>
+              </div>
+              <a
+                href="https://maps.app.goo.gl/fvnktUbXY1mbyvBR8?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-amber-400 px-4 py-2 text-xs font-bold text-gray-950 hover:bg-amber-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                {{ t('hero.review.button') }} <span aria-hidden="true">&#8599;</span>
+              </a>
+            </div>
+          </div>
+        </div>
 
       </div>
 

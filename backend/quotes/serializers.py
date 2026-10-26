@@ -48,6 +48,15 @@ class QuoteRequestSerializer(serializers.ModelSerializer):
             'created_at',
         ]
 
+        extra_kwargs = {
+            'pickup_city': {'required': True, 'allow_blank': False},
+            'pickup_postal_code': {'required': True, 'allow_blank': False},
+            'pickup_floor': {'required': True, 'allow_blank': False},
+            'destination_city': {'required': True, 'allow_blank': False},
+            'destination_postal_code': {'required': True, 'allow_blank': False},
+            'destination_floor': {'required': True, 'allow_blank': False},
+        }
+
         read_only_fields = [
             'id',
             'created_at',

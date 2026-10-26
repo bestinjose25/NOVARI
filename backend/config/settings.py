@@ -295,7 +295,8 @@ NOVARI_NOTIFICATION_EMAIL = os.getenv(
     'bestinjoseofficial@gmail.com'
 )
 
-EMAIL_TIMEOUT = 15
+# Photo attachments can take longer to upload than a plain acknowledgement.
+EMAIL_TIMEOUT = int(os.getenv('EMAIL_TIMEOUT', '120'))
 
 
 SITE_URL = os.getenv(

@@ -77,7 +77,16 @@ const dragActive = ref(false)
 // ERRORS
 // ======================================================
 
+const requiredLocationFields = ["pickupCity", "pickupZip", "pickupFloor", "destinationCity", "destinationZip", "destinationFloor"]
+
 const errors = reactive({
+  pickupCity: false,
+  pickupZip: false,
+  pickupFloor: false,
+  destinationCity: false,
+  destinationZip: false,
+  destinationFloor: false,
+
   firstName: false,
   lastName: false,
   email: false,
@@ -97,6 +106,7 @@ const resetErrors = () => {
   errors.service = false
   errors.consent = false
   errors.files = ''
+  requiredLocationFields.forEach(field => { errors[field] = false })
 
   submitError.value = ''
 }
@@ -166,6 +176,13 @@ const validateForm = () => {
     valid = false
   }
 
+
+  requiredLocationFields.forEach(field => {
+    if (!form[field].trim()) {
+      errors[field] = true
+      valid = false
+    }
+  })
 
   return valid
 }
@@ -599,6 +616,12 @@ const submitForm = async () => {
 
 
       if (data.errors) {
+          if (data.errors.pickup_city) errors.pickupCity = true
+          if (data.errors.pickup_postal_code) errors.pickupZip = true
+          if (data.errors.pickup_floor) errors.pickupFloor = true
+          if (data.errors.destination_city) errors.destinationCity = true
+          if (data.errors.destination_postal_code) errors.destinationZip = true
+          if (data.errors.destination_floor) errors.destinationFloor = true
 
 
         if (data.errors.first_name) {
@@ -686,7 +709,8 @@ const submitForm = async () => {
       errors.phone ||
       errors.service ||
       errors.consent ||
-      errors.files
+      errors.files ||
+      requiredLocationFields.some(field => errors[field])
 
 
     if (!hasFieldErrors) {
@@ -1083,50 +1107,65 @@ const submitForm = async () => {
 
               <div class="form-row thirds">
 
-                <div class="field">
+                <div class="field" :class="{ error: errors.pickupCity }">
 
                   <label for="pickup-city">
-                    {{ t('quotePage.common.city') }}
+                    {{ t('quotePage.common.city') }} <span class="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
                     id="pickup-city"
+                    required
+                    :aria-invalid="errors.pickupCity ? 'true' : undefined"
+                    :aria-describedby="errors.pickupCity ? 'pickup-city-error' : undefined"
+                    @input="errors.pickupCity = false"
                     v-model="form.pickupCity"
                     type="text"
                   >
+                  <span v-if="errors.pickupCity" id="pickup-city-error" class="error-message">{{ t('quotePage.errors.city') }}</span>
 
                 </div>
 
 
-                <div class="field">
+                <div class="field" :class="{ error: errors.pickupZip }">
 
                   <label for="pickup-zip">
-                    {{ t('quotePage.common.postalCode') }}
+                    {{ t('quotePage.common.postalCode') }} <span class="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
                     id="pickup-zip"
+                    required
+                    :aria-invalid="errors.pickupZip ? 'true' : undefined"
+                    :aria-describedby="errors.pickupZip ? 'pickup-zip-error' : undefined"
+                    @input="errors.pickupZip = false"
                     v-model="form.pickupZip"
                     type="text"
                   >
+                  <span v-if="errors.pickupZip" id="pickup-zip-error" class="error-message">{{ t('quotePage.errors.postalCode') }}</span>
 
                 </div>
 
 
-                <div class="field">
+                <div class="field" :class="{ error: errors.pickupFloor }">
 
                   <label for="pickup-floor">
-                    {{ t('quotePage.common.floor') }}
+                    {{ t('quotePage.common.floor') }} <span class="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
                     id="pickup-floor"
+                    required
+                    :aria-invalid="errors.pickupFloor ? 'true' : undefined"
+                    :aria-describedby="errors.pickupFloor ? 'pickup-floor-error' : undefined"
+                    @input="errors.pickupFloor = false"
                     v-model="form.pickupFloor"
                     type="text"
                     :placeholder="
                       t('quotePage.common.floorPlaceholder')
                     "
                   >
+                  <span v-if="errors.pickupFloor" id="pickup-floor-error" class="error-message">{{ t('quotePage.errors.floor') }}</span>
 
                 </div>
 
@@ -1214,50 +1253,65 @@ const submitForm = async () => {
 
               <div class="form-row thirds">
 
-                <div class="field">
+                <div class="field" :class="{ error: errors.destinationCity }">
 
                   <label for="destination-city">
-                    {{ t('quotePage.common.city') }}
+                    {{ t('quotePage.common.city') }} <span class="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
                     id="destination-city"
+                    required
+                    :aria-invalid="errors.destinationCity ? 'true' : undefined"
+                    :aria-describedby="errors.destinationCity ? 'destination-city-error' : undefined"
+                    @input="errors.destinationCity = false"
                     v-model="form.destinationCity"
                     type="text"
                   >
+                  <span v-if="errors.destinationCity" id="destination-city-error" class="error-message">{{ t('quotePage.errors.city') }}</span>
 
                 </div>
 
 
-                <div class="field">
+                <div class="field" :class="{ error: errors.destinationZip }">
 
                   <label for="destination-zip">
-                    {{ t('quotePage.common.postalCode') }}
+                    {{ t('quotePage.common.postalCode') }} <span class="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
                     id="destination-zip"
+                    required
+                    :aria-invalid="errors.destinationZip ? 'true' : undefined"
+                    :aria-describedby="errors.destinationZip ? 'destination-zip-error' : undefined"
+                    @input="errors.destinationZip = false"
                     v-model="form.destinationZip"
                     type="text"
                   >
+                  <span v-if="errors.destinationZip" id="destination-zip-error" class="error-message">{{ t('quotePage.errors.postalCode') }}</span>
 
                 </div>
 
 
-                <div class="field">
+                <div class="field" :class="{ error: errors.destinationFloor }">
 
                   <label for="destination-floor">
-                    {{ t('quotePage.common.floor') }}
+                    {{ t('quotePage.common.floor') }} <span class="required" aria-hidden="true">*</span>
                   </label>
 
                   <input
                     id="destination-floor"
+                    required
+                    :aria-invalid="errors.destinationFloor ? 'true' : undefined"
+                    :aria-describedby="errors.destinationFloor ? 'destination-floor-error' : undefined"
+                    @input="errors.destinationFloor = false"
                     v-model="form.destinationFloor"
                     type="text"
                     :placeholder="
                       t('quotePage.common.floorPlaceholderDestination')
                     "
                   >
+                  <span v-if="errors.destinationFloor" id="destination-floor-error" class="error-message">{{ t('quotePage.errors.floor') }}</span>
 
                 </div>
 
@@ -1790,7 +1844,7 @@ const submitForm = async () => {
 
 
             <!-- PHONE -->
-            <a href="tel:+491785129865">
+            <a href="tel:+4901739523061">
 
               <span class="contact-icon phone">
 
@@ -1815,7 +1869,7 @@ const submitForm = async () => {
                 </small>
 
                 <b>
-                  0178 5129865
+                  0173 9523061
                 </b>
 
               </span>

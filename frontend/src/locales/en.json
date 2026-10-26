@@ -10,6 +10,24 @@
   },
 
   "hero": {
+    "carousel": {
+        "label": "NOVARI services",
+        "movingAlt": "Moving boxes and a couple preparing for a move",
+        "kitchenAlt": "NOVARI team assembling kitchen cabinets",
+        "previous": "Previous photo",
+        "next": "Next photo",
+        "goTo": "Show photo {number}",
+        "counter": "Photo {current} of {total}",
+        "pause": "Pause slideshow",
+        "play": "Play slideshow"
+    },
+    "review": {
+        "shortText": "Share your experience.",
+        "title": "Happy with our service?",
+        "description": "Your feedback helps local customers find NOVARI. Share your experience with a Google review.",
+        "button": "Review us on Google"
+    },
+
     "badge": "Serving Koblenz & the Mittelrhein region",
     "location": "NOVARI · Koblenz",
     "available24": "Available 24/7",
@@ -401,6 +419,9 @@
   },
 
   "errors": {
+    "city": "Please enter the city",
+    "postalCode": "Please enter the postal code",
+    "floor": "Please enter the floor (use 0 for ground floor)",
     "consent": "Please accept the privacy policy",
     "firstName": "Please enter your first name",
     "lastName": "Please enter your last name",

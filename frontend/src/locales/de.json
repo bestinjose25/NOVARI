@@ -10,6 +10,24 @@
   },
 
   "hero": {
+    "carousel": {
+        "label": "NOVARI Leistungen",
+        "movingAlt": "Umzugskartons und ein Paar bei der Umzugsvorbereitung",
+        "kitchenAlt": "NOVARI-Team bei der Montage von Küchenschränken",
+        "previous": "Vorheriges Foto",
+        "next": "Nächstes Foto",
+        "goTo": "Foto {number} anzeigen",
+        "counter": "Foto {current} von {total}",
+        "pause": "Diashow pausieren",
+        "play": "Diashow starten"
+    },
+    "review": {
+        "shortText": "Teilen Sie Ihre Erfahrung.",
+        "title": "Zufrieden mit unserem Service?",
+        "description": "Ihre Rückmeldung hilft Kunden aus der Region, NOVARI zu finden. Teilen Sie Ihre Erfahrung mit einer Google-Bewertung.",
+        "button": "Auf Google bewerten"
+    },
+
     "badge": "Für Koblenz & die Mittelrhein-Region",
     "location": "NOVARI · Koblenz",
     "available24": "24/7 erreichbar",
@@ -399,6 +417,9 @@
   },
 
   "errors": {
+    "city": "Bitte geben Sie den Ort ein",
+    "postalCode": "Bitte geben Sie die Postleitzahl ein",
+    "floor": "Bitte geben Sie die Etage ein (0 für Erdgeschoss)",
     "consent": "Bitte akzeptieren Sie die Datenschutzerklärung",
     "firstName": "Bitte geben Sie Ihren Vornamen ein",
     "lastName": "Bitte geben Sie Ihren Nachnamen ein",
