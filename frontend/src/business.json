@@ -1,0 +1,18 @@
+{
+  "displayName": "NOVARI",
+  "legalName": "",
+  "representatives": [],
+  "addressLines": [],
+  "email": "info@novari-gbr.de",
+  "phone": "+491739523061",
+  "website": "",
+  "registerInfo": "",
+  "vatId": "",
+  "additionalDisclosures": "",
+  "legalReviewed": false,
+  "privacyReviewed": false,
+  "retentionPolicy": "",
+  "backendProvider": "",
+  "emailProvider": "Google Gmail",
+  "frontendProvider": "Netlify"
+}

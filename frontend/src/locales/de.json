@@ -313,10 +313,11 @@
     "submitError": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
 
     "errors": {
-      "name": "Bitte geben Sie Ihren Namen ein",
-      "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
-      "message": "Bitte geben Sie eine kurze Nachricht ein"
-    }
+    "name": "Bitte geben Sie Ihren Namen ein",
+    "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "message": "Bitte geben Sie eine kurze Nachricht ein",
+    "consent": "Bitte akzeptieren Sie die Datenschutzerklärung."
+}
   },
 
   "success": {
@@ -400,8 +401,10 @@
   "photos": {
     "title": "Fotos / zusätzliche Informationen",
     "upload": "Fotos oder Videos hochladen",
-    "description": "Dateien hier ablegen oder zum Auswählen klicken · JPG, PNG, MP4 bis 25 MB pro Datei",
-    "remove": "Datei entfernen"
+    "description": "Maximal 6 Dateien, zusammen 25 MB · JPG, PNG, WebP oder MP4",
+    "remove": "Datei entfernen",
+    "countError": "Sie können maximal 6 Dateien hochladen.",
+    "totalError": "Die Gesamtgröße darf 25 MB nicht überschreiten."
 },
 
   "consent": {
@@ -473,7 +476,7 @@
     "title": "Hosting und Server-Log-Dateien",
     "text1": "Beim Besuch dieser Website kann der Hosting-Anbieter automatisch technische Informationen wie IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Zugriffs sowie aufgerufene Seiten erfassen.",
     "text2": "Diese Daten werden in der Regel verarbeitet, um einen sicheren und zuverlässigen Betrieb der Website zu gewährleisten.",
-    "notice": "Der endgültige Hosting-Anbieter und die dazugehörigen Datenschutzinformationen werden ergänzt, sobald das Hosting festgelegt wurde."
+    "notice": "Das Frontend wird über Netlify ausgeliefert. Technische Zugriffsdaten werden verarbeitet, um die Website bereitzustellen und zu schützen. Anbieterinformationen: https://www.netlify.com/privacy/."
   },
 
   "contact": {
@@ -486,7 +489,7 @@
     "title": "Kontakt- und Angebotsformulare",
     "text1": "Bei einer Kontakt- oder Angebotsanfrage können wir Ihren Namen, Ihre E-Mail-Adresse, Telefonnummer, die gewünschte Dienstleistung, Abhol- und Zielinformationen sowie weitere von Ihnen angegebene Informationen verarbeiten.",
     "text2": "Diese Angaben verwenden wir zur Bearbeitung Ihrer Anfrage, zur Kommunikation mit Ihnen und zur Erstellung eines Angebots.",
-    "text3": "Sobald die Backend-Funktionen aktiviert werden, werden hier auch die technischen Dienstleister für Übertragung und Speicherung der Formulardaten aufgeführt."
+    "text3": "Anfragen und hochgeladene Dateien werden zur Bearbeitung gespeichert. Das Unternehmen erhält eine Benachrichtigung und der Kunde eine Eingangsbestätigung per E-Mail. Der E-Mail-Versand erfolgt derzeit über Google Gmail; Daten werden dabei auch in den Systemen des E-Mail-Anbieters verarbeitet."
   },
 
   "uploads": {
@@ -506,8 +509,8 @@
 
   "fonts": {
     "title": "Webfonts",
-    "text": "Diese Website verwendet Archivo und Hanken Grotesk. Werden diese Schriftarten von einem externen Anbieter wie Google Fonts geladen, kann eine Verbindung zu diesem Anbieter hergestellt werden. Für den Produktivbetrieb ist eine lokale Bereitstellung der Schriftarten nach Möglichkeit vorzuziehen."
-  },
+    "text": "Schriftarten werden lokal von dieser Website geladen. Dabei wird keine Verbindung zu Google Fonts hergestellt."
+},
 
   "storage": {
     "title": "Lokaler Speicher und Spracheinstellung",
@@ -543,9 +546,15 @@
     "email": "E-Mail",
     "phone": "Telefon"
   }
+},
+"impressumPage": {
+  "title": "Impressum",
+  "company": "Angaben zum Unternehmen",
+  "representatives": "Vertreten durch",
+  "contact": "Kontakt",
+  "register": "Registerangaben",
+  "vat": "Umsatzsteuer-Identifikationsnummer"
 }
-
-  
 }
 
 

@@ -1,5 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
+import business from '../business.json'
 
 const { t } = useI18n({
   useScope: 'global',
@@ -61,28 +62,24 @@ const { t } = useI18n({
                 <div class="company-box">
 
                   <strong>
-                    NOVARI GbR
+                    {{ business.legalName || business.displayName }}
                   </strong>
 
-                  <span>
-                    {{ t('privacyPage.controller.addressPlaceholder') }}
-                  </span>
-
-                  <span>
-                    Koblenz, Germany
+                  <span v-for="line in business.addressLines" :key="line">
+                    {{ line }}
                   </span>
 
                   <span>
                     {{ t('privacyPage.controller.email') }}:
-                    <a href="mailto:Novari2026@yahoo.com">
-                      Novari2026@yahoo.com
+                    <a :href="`mailto:${business.email}`">
+                      {{ business.email }}
                     </a>
                   </span>
 
                   <span>
                     {{ t('privacyPage.controller.phone') }}:
-                    <a href="tel:+491739523061">
-                      0173 9523061
+                    <a :href="`tel:${business.phone}`">
+                      {{ business.phone }}
                     </a>
                   </span>
 
@@ -198,6 +195,8 @@ const { t } = useI18n({
 
                 <p>
                   {{ t('privacyPage.forms.text3') }}
+                  <span v-if="business.backendProvider"> {{ business.backendProvider }}</span>
+                  <span v-if="business.retentionPolicy"> {{ business.retentionPolicy }}</span>
                 </p>
 
               </div>
@@ -430,14 +429,14 @@ const { t } = useI18n({
 
             <div class="aside-contact">
 
-              <a href="mailto:Novari2026@yahoo.com">
+              <a href="mailto:info@novari-gbr.de">
 
                 <small>
                   {{ t('privacyPage.aside.email') }}
                 </small>
 
                 <strong>
-                  Novari2026@yahoo.com
+                  info@novari-gbr.de
                 </strong>
 
               </a>

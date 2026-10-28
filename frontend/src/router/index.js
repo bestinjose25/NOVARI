@@ -4,9 +4,11 @@ import ServicesView from '../views/ServicesView.vue'
 import QuoteView from '../views/QuoteView.vue'
 import ContactView from '../views/ContactView.vue'
 import PrivacyView from '../views/PrivacyView.vue'
+import ImpressumView from '../views/ImpressumView.vue'
 
 
 const routes = [
+  { path: '/impressum', name: 'impressum', component: ImpressumView },
   {
     path: '/',
     name: 'home',

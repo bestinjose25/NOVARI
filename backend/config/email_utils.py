@@ -449,101 +449,15 @@ Eingereicht am:
 
 
     total_size = 0
-
-
     for attachment in quote.attachments.all():
-
-        print(
-            'FOUND ATTACHMENT:',
-            attachment.original_name,
-            attachment.content_type,
-            attachment.file_size
-        )
-
-
-        # ----------------------------------------------
-        # Check file type
-        # ----------------------------------------------
-
-        if (
-            attachment.content_type
-            not in allowed_types
-        ):
-
-            print(
-                'SKIPPED TYPE:',
-                attachment.original_name
-            )
-
+        if attachment.content_type not in allowed_types:
             continue
-
-
-        # ----------------------------------------------
-        # Check combined size
-        # ----------------------------------------------
-
-        if (
-            total_size
-            + attachment.file_size
-            > MAX_TOTAL_ATTACHMENT_SIZE
-        ):
-
-            print(
-                'SKIPPED SIZE:',
-                attachment.original_name
-            )
-
+        if total_size + attachment.file_size > MAX_TOTAL_ATTACHMENT_SIZE:
             continue
-
-
-        # ----------------------------------------------
-        # Open saved file
-        # ----------------------------------------------
-
-        attachment.file.open(
-            'rb'
-        )
-
-
-        try:
-
-            file_content = (
-                attachment.file.read()
-            )
-
-
-            # ------------------------------------------
-            # Attach the actual file to email
-            # ------------------------------------------
-
-            email.attach(
-                attachment.original_name,
-                file_content,
-                attachment.content_type
-            )
-
-
-            total_size += (
-                attachment.file_size
-            )
-
-
-            print(
-                'ATTACHED TO EMAIL:',
-                attachment.original_name
-            )
-
-
-        finally:
-
-            attachment.file.close()
-
-
-    print(
-        'FILES ATTACHED TO EMAIL:',
-        len(email.attachments)
-    )
-
+        with attachment.file.open('rb') as source:
+            file_content = source.read()
+        email.attach(attachment.original_name, file_content, attachment.content_type)
+        total_size += attachment.file_size
 
     # ==================================================
     # SEND EMAIL

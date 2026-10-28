@@ -57,3 +57,15 @@ class ContactEmailTests(TestCase):
         self.assertFalse(response.data['customer_email_sent'])
         self.assertEqual(ContactRequest.objects.count(), 1)
         self.assertEqual(mail.outbox[0].to, [settings.NOVARI_NOTIFICATION_EMAIL])
+
+
+class ContactConsentTests(TestCase):
+    def test_missing_false_and_null_consent_are_rejected(self):
+        for value in ['missing', False, None]:
+            data = {'name': 'Test', 'email': 'test@example.com', 'message': 'Hello'}
+            if value != 'missing':
+                data['consent_accepted'] = value
+            response = self.client.post('/api/contact/', data, content_type='application/json')
+            self.assertEqual(response.status_code, 400)
+            self.assertIn('consent_accepted', response.data['errors'])
+        self.assertFalse(ContactRequest.objects.exists())

@@ -2,8 +2,6 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
-import os
-import dj_database_url
 
 # ---------------------------------------------------------
 # BASE DIRECTORY
@@ -139,7 +137,7 @@ if DATABASE_URL:
         'default': dj_database_url.parse(
             DATABASE_URL,
             conn_max_age=30,
-            ssl_require=True,
+            # External database URLs should include ?sslmode=require.
         )
     }
 
@@ -248,7 +246,18 @@ CORS_ALLOWED_ORIGINS = [
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = Path(os.getenv('MEDIA_ROOT', str(BASE_DIR / 'media')))
+
+MAX_QUOTE_FILES = 6
+MAX_QUOTE_UPLOAD_BYTES = 25 * 1024 * 1024
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024
+DATA_UPLOAD_MAX_NUMBER_FILES = MAX_QUOTE_FILES
+FILE_UPLOAD_HANDLERS = [
+    'config.uploads.UploadBudgetHandler',
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
 
 # -----Media-----
 

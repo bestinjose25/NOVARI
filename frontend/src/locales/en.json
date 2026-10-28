@@ -315,10 +315,11 @@
     "submitError": "Something went wrong while sending your message. Please try again.",
 
     "errors": {
-      "name": "Please enter your name",
-      "email": "Enter a valid email address",
-      "message": "Please add a short message"
-    }
+    "name": "Please enter your name",
+    "email": "Enter a valid email address",
+    "message": "Please add a short message",
+    "consent": "Please accept the privacy policy."
+}
   },
 
   "success": {
@@ -402,8 +403,10 @@
   "photos": {
     "title": "Photos / additional information",
     "upload": "Upload photos or videos",
-    "description": "Drag & drop, or click to browse · JPG, PNG, MP4 up to 25 MB each",
-    "remove": "Remove file"
+    "description": "Maximum 6 files, 25 MB combined · JPG, PNG, WebP or MP4",
+    "remove": "Remove file",
+    "countError": "You can upload at most 6 files.",
+    "totalError": "The combined upload size must not exceed 25 MB."
 },
 
   "consent": {
@@ -476,7 +479,7 @@
     "title": "Website hosting and server log files",
     "text1": "When you visit this website, the hosting provider may automatically collect technical information such as your IP address, browser type, operating system, date and time of access and requested pages.",
     "text2": "This information is generally processed to ensure the secure and reliable operation of the website.",
-    "notice": "The final hosting provider and its privacy information will be added here once the website hosting is finalized."
+    "notice": "The frontend is delivered by Netlify. Technical access data is processed to deliver and protect the website. Provider details: https://www.netlify.com/privacy/."
   },
 
   "contact": {
@@ -489,7 +492,7 @@
     "title": "Contact and quote forms",
     "text1": "When you submit a contact or quotation request, we may process your name, email address, telephone number, service requirements, pickup and destination information and any additional information you provide.",
     "text2": "The information is used to process your request, communicate with you and prepare a quotation.",
-    "text3": "Once the backend functionality is activated, this section will also identify the technical service providers involved in transmitting and storing form submissions."
+    "text3": "Enquiries and uploaded files are saved for processing. The owner receives a notification and the customer receives an acknowledgement by email. Email delivery currently uses Google Gmail; processing also takes place in the email provider’s systems."
   },
 
   "uploads": {
@@ -509,8 +512,8 @@
 
   "fonts": {
     "title": "Web fonts",
-    "text": "The website currently uses Archivo and Hanken Grotesk. If these fonts are loaded from an external provider such as Google Fonts, a connection to that provider may be established. For production use, locally hosted font files are preferable where practical."
-  },
+    "text": "Fonts are served from this website. Loading them does not contact Google Fonts."
+},
 
   "storage": {
     "title": "Local storage and language preference",
@@ -546,7 +549,13 @@
     "email": "Email",
     "phone": "Telephone"
   }
+},
+"impressumPage": {
+  "title": "Legal notice",
+  "company": "Business information",
+  "representatives": "Represented by",
+  "contact": "Contact",
+  "register": "Register information",
+  "vat": "VAT identification number"
 }
-
-  
 }

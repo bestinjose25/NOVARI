@@ -247,6 +247,16 @@ const addFiles = (newFiles) => {
       )
 
 
+    if (duplicate) continue
+    if (files.value.length >= 6) {
+      errors.files = t('quotePage.photos.countError')
+      continue
+    }
+    if (files.value.reduce((total, existing) => total + existing.size, 0) + file.size > maxSize) {
+      errors.files = t('quotePage.photos.totalError')
+      continue
+    }
+
     if (!duplicate) {
 
       files.value.push(file)
@@ -1878,7 +1888,7 @@ const submitForm = async () => {
 
 
             <!-- EMAIL -->
-            <a href="mailto:Novari2026@yahoo.com">
+            <a href="mailto:info@novari-gbr.de">
 
               <span class="contact-icon email">
 
@@ -1911,7 +1921,7 @@ const submitForm = async () => {
                 </small>
 
                 <b class="email-value">
-                  Novari2026@yahoo.com
+                  info@novari-gbr.de
                 </b>
 
               </span>

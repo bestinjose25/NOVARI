@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+@import "@fontsource-variable/archivo";
+@import "@fontsource-variable/hanken-grotesk";
 
 @import "tailwindcss";
 
@@ -21,8 +22,8 @@
   --ok: #1E8A5B;
   --err: #C0362C;
 
-  --display: "Archivo", system-ui, sans-serif;
-  --body: "Hanken Grotesk", system-ui, sans-serif;
+  --display: "Archivo Variable", system-ui, sans-serif;
+  --body: "Hanken Grotesk Variable", system-ui, sans-serif;
 }
 
 body {

@@ -327,7 +327,7 @@ const submitForm = async () => {
             <!-- EMAIL -->
             <a
               class="contact-card"
-              href="mailto:Novari2026@yahoo.com"
+              href="mailto:info@novari-gbr.de"
             >
 
               <div class="contact-icon email">
@@ -360,7 +360,7 @@ const submitForm = async () => {
               </small>
 
               <b class="email-address">
-                Novari2026@yahoo.com
+                info@novari-gbr.de
               </b>
 
               <p>

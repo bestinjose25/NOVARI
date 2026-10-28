@@ -5,12 +5,14 @@ from django.urls import (
     path,
 )
 
-from django.conf import settings
 
-from django.conf.urls.static import static
+from .views import health
+from quotes.downloads import download_attachment
 
 
 urlpatterns = [
+    path('health/', health, name='health'),
+    path('admin/quote-files/<int:pk>/', download_attachment, name='attachment-download'),
 
     path(
         'admin/',
@@ -29,9 +31,4 @@ urlpatterns = [
 ]
 
 
-if settings.DEBUG:
-
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
+# Customer uploads are only accessible through permission-checked admin downloads.

@@ -332,7 +332,7 @@ const footerServices = [
 
             <!-- Email -->
             <a
-              href="mailto:Novari2026@yahoo.com"
+              href="mailto:info@novari-gbr.de"
               class="
                 flex
                 items-start
@@ -385,7 +385,7 @@ const footerServices = [
                     text-white
                   "
                 >
-                  Novari2026@yahoo.com
+                  info@novari-gbr.de
                 </p>
 
               </div>

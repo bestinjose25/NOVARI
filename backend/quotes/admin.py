@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .downloads import attachment_download_link
 
 from .models import (
     QuoteRequest,
@@ -13,8 +14,14 @@ class QuoteAttachmentInline(
     model = QuoteAttachment
 
     extra = 0
+    download = staticmethod(attachment_download_link)
+    fields = ('original_name', 'download', 'content_type', 'file_size', 'created_at')
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
     readonly_fields = (
+        'download',
         'original_name',
         'content_type',
         'file_size',
@@ -67,6 +74,12 @@ class QuoteRequestAdmin(
 class QuoteAttachmentAdmin(
     admin.ModelAdmin
 ):
+    download = staticmethod(attachment_download_link)
+    fields = ('quote', 'original_name', 'download', 'content_type', 'file_size', 'created_at')
+    readonly_fields = ('download', 'original_name', 'content_type', 'file_size', 'created_at')
+
+    def has_add_permission(self, request):
+        return False
 
     list_display = (
         'original_name',

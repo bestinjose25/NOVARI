@@ -3,6 +3,7 @@ from .models import ContactRequest
 
 
 class ContactRequestSerializer(serializers.ModelSerializer):
+    consent_accepted = serializers.BooleanField(required=True)
 
     class Meta:
         model = ContactRequest

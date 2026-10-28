@@ -3,12 +3,14 @@ frontend/node_modules/
 frontend/dist/
 frontend/.env
 frontend/.env.*
+!frontend/.env.example
 
 # Backend
 backend/.venv/
 backend/.env
 backend/.env.*
 !backend/.env.example
+!backend/.env.production.example
 backend/__pycache__/
 backend/media/
 backend/staticfiles/
