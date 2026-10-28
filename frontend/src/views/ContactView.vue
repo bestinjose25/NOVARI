@@ -1,5 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
+import { resolveApiBaseUrl } from '../apiConfig'
+import business from '../business.json'
 import { useI18n } from 'vue-i18n'
 import Footer from '@/components/Footer.vue'
 import ServiceAreaMap from '../components/ServiceAreaMap.vue'
@@ -10,7 +12,7 @@ const { t } = useI18n({
 
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = resolveApiBaseUrl(import.meta.env.VITE_API_BASE_URL, import.meta.env.DEV)
 
 
 const form = reactive({
@@ -88,6 +90,8 @@ const resetForm = () => {
 
 
 const submitForm = async () => {
+  if (!API_BASE_URL) return
+
 
   if (!validateForm()) {
     return
@@ -579,6 +583,11 @@ const submitForm = async () => {
               novalidate
               @submit.prevent="submitForm"
             >
+              <p v-if="!API_BASE_URL" role="status" class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-gray-800">
+                {{ t('formUnavailable') }}
+                <a :href="`mailto:${business.email}`" class="font-semibold underline">{{ business.email }}</a>
+              </p>
+
 
               <!-- NAME + PHONE -->
               <div class="form-row">
@@ -745,7 +754,7 @@ const submitForm = async () => {
                 <button
                   type="submit"
                   class="submit-button"
-                  :disabled="loading"
+                  :disabled="loading || !API_BASE_URL"
                 >
 
                   <span

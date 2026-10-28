@@ -42,7 +42,10 @@ Local SQLite data/accounts and uploaded files are not automatically migrated.
 ## Netlify
 
 - Frontend base directory: `frontend`; publish `dist`; Node 24.19+.
-- Set `VITE_API_BASE_URL` to the HTTPS API origin (no path).
+- Set `VITE_API_BASE_URL` to the HTTPS API origin (no path) when the backend is ready.
+  It may be left unset for a frontend-only deployment; both forms show an email
+  alternative and cannot submit until a backend is configured. A nonempty invalid
+  origin still blocks Netlify builds.
 - Build command for public launch: `npm run check:release && npm run build`.
 - Rebuild after changing this variable. Never place SMTP/database secrets in VITE variables.
 - `vue-i18n` and self-hosted fonts are direct frontend dependencies; frontend-only

@@ -554,7 +554,8 @@
   "contact": "Kontakt",
   "register": "Registerangaben",
   "vat": "Umsatzsteuer-Identifikationsnummer"
-}
+},
+  "formUnavailable": "Online-Anfragen sind derzeit nicht verfügbar. Bitte senden Sie Ihre Anfrage per E-Mail:"
 }
 
 

@@ -557,5 +557,6 @@
   "contact": "Contact",
   "register": "Register information",
   "vat": "VAT identification number"
-}
+},
+  "formUnavailable": "Online submissions are temporarily unavailable. Please send your enquiry by email:"
 }
