@@ -5,14 +5,14 @@
   "addressLines": [],
   "email": "info@novari-gbr.de",
   "phone": "+491739523061",
-  "website": "",
+  "website": "https://novari-gbr.de",
   "registerInfo": "",
   "vatId": "",
   "additionalDisclosures": "",
   "legalReviewed": false,
   "privacyReviewed": false,
   "retentionPolicy": "",
-  "backendProvider": "",
-  "emailProvider": "Google Gmail",
+  "backendProvider": "Supabase",
+  "emailProvider": "Resend",
   "frontendProvider": "Netlify"
 }

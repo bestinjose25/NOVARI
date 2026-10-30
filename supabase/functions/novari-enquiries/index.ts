@@ -121,7 +121,8 @@ async function emailEnvelope(db: DB, job: Record<string, any>) {
   const attachments = [];
   let attachmentBytes = 0;
   for (const file of files || []) {
-    const signed = checked(await db.storage.from(BUCKET).createSignedUrl(file.storage_path, 7 * 86400, { download: true }))!;
+    // Allow browsers to display supported images instead of forcing a download.
+    const signed = checked(await db.storage.from(BUCKET).createSignedUrl(file.storage_path, 7 * 86400))!;
     links.push({ name: file.original_name, url: signed.signedUrl });
     if (attachmentBytes + file.file_size <= 10 * 1024 * 1024) {
       attachments.push({ filename: file.original_name, path: signed.signedUrl });
