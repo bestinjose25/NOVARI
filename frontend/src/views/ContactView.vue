@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { resolveApiBaseUrl } from '../apiConfig'
+import { formsAvailable, usesSupabase, submitEnquiry, clearEnquiryAttempt } from '../enquiries'
+import TurnstileCheck from '../components/TurnstileCheck.vue'
 import business from '../business.json'
 import { useI18n } from 'vue-i18n'
 import Footer from '@/components/Footer.vue'
@@ -12,7 +13,8 @@ const { t } = useI18n({
 
 
 
-const API_BASE_URL = resolveApiBaseUrl(import.meta.env.VITE_API_BASE_URL, import.meta.env.DEV)
+const captchaToken = ref('')
+const captchaCheck = ref(null)
 
 
 const form = reactive({
@@ -81,6 +83,8 @@ const validateForm = () => {
 
 
 const resetForm = () => {
+  clearEnquiryAttempt()
+
   form.name = ''
   form.phone = ''
   form.email = ''
@@ -90,7 +94,7 @@ const resetForm = () => {
 
 
 const submitForm = async () => {
-  if (!API_BASE_URL) return
+  if (!formsAvailable || (usesSupabase && !captchaToken.value)) return
 
 
   if (!validateForm()) {
@@ -105,33 +109,18 @@ const submitForm = async () => {
 
   try {
 
-    const response = await fetch(
-      `${API_BASE_URL}/api/contact/`,
-      {
-        method: 'POST',
-
-        headers: {
-          'Content-Type': 'application/json',
-        },
-
-        body: JSON.stringify({
-          name: form.name,
-          phone: form.phone,
-          email: form.email,
-          message: form.message,
-
-          // Vue uses "consent"
-          // Django uses "consent_accepted"
-          consent_accepted: form.consent,
-        }),
-      }
-    )
-
+    const response = await submitEnquiry('contact', {
+      name: form.name, phone: form.phone, email: form.email,
+      message: form.message, consent_accepted: form.consent,
+    }, captchaToken.value)
 
     const data = await response.json()
 
 
     if (!response.ok) {
+      if (data.errors?.captcha) submitError.value = t('securityCheckError')
+      if (data.errors?.form) submitError.value = data.errors.form.join(' ')
+
 
       console.error(
         'Backend validation error:',
@@ -195,7 +184,7 @@ const submitForm = async () => {
       errors.consent
 
 
-    if (!hasFieldErrors) {
+    if (!hasFieldErrors && !submitError.value) {
       submitError.value =
         t('contactPage.form.submitError')
     }
@@ -204,6 +193,7 @@ const submitForm = async () => {
   finally {
 
     loading.value = false
+    captchaCheck.value?.reset()
 
   }
 }
@@ -583,7 +573,7 @@ const submitForm = async () => {
               novalidate
               @submit.prevent="submitForm"
             >
-              <p v-if="!API_BASE_URL" role="status" class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-gray-800">
+              <p v-if="!formsAvailable" role="status" class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-gray-800">
                 {{ t('formUnavailable') }}
                 <a :href="`mailto:${business.email}`" class="font-semibold underline">{{ business.email }}</a>
               </p>
@@ -751,10 +741,12 @@ const submitForm = async () => {
               <!-- SUBMIT -->
               <div class="submit-row">
 
+            <TurnstileCheck v-if="usesSupabase && formsAvailable" ref="captchaCheck" v-model="captchaToken" action="contact" />
+
                 <button
                   type="submit"
                   class="submit-button"
-                  :disabled="loading || !API_BASE_URL"
+                  :disabled="loading || !formsAvailable || (usesSupabase && !captchaToken)"
                 >
 
                   <span

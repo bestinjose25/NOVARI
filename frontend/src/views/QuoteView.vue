@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { resolveApiBaseUrl } from '../apiConfig'
+import { formsAvailable, usesSupabase, submitEnquiry, clearEnquiryAttempt } from '../enquiries'
+import TurnstileCheck from '../components/TurnstileCheck.vue'
 import business from '../business.json'
 import { useI18n } from 'vue-i18n'
 import Footer from '@/components/Footer.vue'
@@ -9,7 +10,8 @@ const { t } = useI18n({
   useScope: 'global',
 })
 
-const API_BASE_URL = resolveApiBaseUrl(import.meta.env.VITE_API_BASE_URL, import.meta.env.DEV)
+const captchaToken = ref('')
+const captchaCheck = ref(null)
 
 
 // ======================================================
@@ -321,6 +323,8 @@ const formatFileSize = (bytes) => {
 // ======================================================
 
 const resetForm = () => {
+  clearEnquiryAttempt()
+
 
   form.firstName = ''
   form.lastName = ''
@@ -407,7 +411,7 @@ const getBackendServiceValue = () => {
 // ======================================================
 
 const submitForm = async () => {
-  if (!API_BASE_URL) return
+  if (!formsAvailable || (usesSupabase && !captchaToken.value)) return
 
 
 
@@ -596,30 +600,23 @@ const submitForm = async () => {
 
 
     // ==================================================
-    // SEND TO DJANGO
+    // SEND TO CONFIGURED BACKEND
     // ==================================================
 
-    const response =
-      await fetch(
-        `${API_BASE_URL}/api/quote/`,
-        {
-          method: 'POST',
-
-          // Do NOT manually set Content-Type
-          body: formData,
-        }
-      )
-
+    const response = await submitEnquiry('quote', formData, captchaToken.value)
 
     const data =
       await response.json()
 
 
     // ==================================================
-    // DJANGO VALIDATION ERROR
+    // BACKEND VALIDATION ERROR
     // ==================================================
 
     if (!response.ok) {
+      if (data.errors?.captcha) submitError.value = t('securityCheckError')
+      if (data.errors?.form) submitError.value = data.errors.form.join(' ')
+
 
 
       console.error(
@@ -726,7 +723,7 @@ const submitForm = async () => {
       requiredLocationFields.some(field => errors[field])
 
 
-    if (!hasFieldErrors) {
+    if (!hasFieldErrors && !submitError.value) {
 
       submitError.value =
         'Something went wrong while sending your quote request. Please try again.'
@@ -736,6 +733,7 @@ const submitForm = async () => {
   finally {
 
     loading.value = false
+    captchaCheck.value?.reset()
   }
 }
 </script>
@@ -845,7 +843,7 @@ const submitForm = async () => {
             novalidate
             @submit.prevent="submitForm"
           >
-              <p v-if="!API_BASE_URL" role="status" class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-gray-800">
+              <p v-if="!formsAvailable" role="status" class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-gray-800">
                 {{ t('formUnavailable') }}
                 <a :href="`mailto:${business.email}`" class="font-semibold underline">{{ business.email }}</a>
               </p>
@@ -1666,12 +1664,14 @@ const submitForm = async () => {
             <!-- ===============================
                  SUBMIT
             ================================ -->
+            <TurnstileCheck v-if="usesSupabase && formsAvailable" ref="captchaCheck" v-model="captchaToken" action="quote" />
+
             <div class="submit-row">
 
               <button
                 type="submit"
                 class="primary-button"
-                :disabled="loading || !API_BASE_URL"
+                :disabled="loading || !formsAvailable || (usesSupabase && !captchaToken)"
               >
 
                 <span

@@ -555,7 +555,8 @@
   "register": "Registerangaben",
   "vat": "Umsatzsteuer-Identifikationsnummer"
 },
-  "formUnavailable": "Online-Anfragen sind derzeit nicht verfügbar. Bitte senden Sie Ihre Anfrage per E-Mail:"
+  "formUnavailable": "Online-Anfragen sind derzeit nicht verfügbar. Bitte senden Sie Ihre Anfrage per E-Mail:",
+  "securityCheckError": "Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per E-Mail."
 }
 
 

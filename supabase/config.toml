@@ -1,0 +1,5 @@
+project_id = "vdlkltslnsgggwmqgyfu"
+
+[functions.novari-enquiries]
+# Public form routes validate Turnstile; job routes require NOVARI_JOB_SECRET.
+verify_jwt = false

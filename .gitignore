@@ -30,3 +30,10 @@ backend/db.sqlite3
 
 # Local email previews
 backend/.local-emails/
+
+# Supabase credentials and local runtime
+supabase/.temp/
+supabase/.branches/
+supabase/functions/.env
+supabase/functions/.env.*
+!supabase/functions/.env.example

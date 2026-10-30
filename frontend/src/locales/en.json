@@ -558,5 +558,6 @@
   "register": "Register information",
   "vat": "VAT identification number"
 },
-  "formUnavailable": "Online submissions are temporarily unavailable. Please send your enquiry by email:"
+  "formUnavailable": "Online submissions are temporarily unavailable. Please send your enquiry by email:",
+  "securityCheckError": "The security check could not be completed. Please retry or contact us by email."
 }
