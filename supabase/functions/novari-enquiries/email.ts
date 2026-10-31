@@ -12,8 +12,9 @@ export function renderEmail(kind: string, audience: string, data: Record<string,
   const name = quote ? `${data.first_name} ${data.last_name}` : String(data.name);
   const subject = owner
     ? `Neue NOVARI ${quote ? "Angebotsanfrage" : "Kontaktanfrage"} #${data.reference}`
-    : `Ihre ${quote ? "Anfrage" : "Nachricht"} bei NOVARI #${data.reference} wurde erhalten`;
-  const rows: [string, unknown][] = [["Anfrage-Nr.", data.reference], ["Name", name], ["E-Mail", data.email], ["Telefon", data.phone || "-"]];
+    : `Ihre ${quote ? "Anfrage" : "Nachricht"} bei NOVARI wurde erhalten`;
+  const rows: [string, unknown][] = owner ? [["Anfrage-Nr.", data.reference]] : [];
+  rows.push(["Name", name], ["E-Mail", data.email], ["Telefon", data.phone || "-"]);
   if (quote) rows.push(
     ["Dienstleistung", SERVICES[String(data.service)] || data.service],
     ["Abholadresse", data.pickup_address || "-"], ["Abholort", `${data.pickup_postal_code} ${data.pickup_city}`],

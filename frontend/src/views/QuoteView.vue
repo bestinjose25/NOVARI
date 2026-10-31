@@ -12,6 +12,12 @@ const { t } = useI18n({
 
 const captchaToken = ref('')
 const captchaCheck = ref(null)
+const currentBerlinDate = () => {
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date())
+  const part = type => parts.find(p => p.type === type).value
+  return `${part('year')}-${part('month')}-${part('day')}`
+}
+const earliestDate = ref(currentBerlinDate())
 
 
 // ======================================================
@@ -83,6 +89,7 @@ const dragActive = ref(false)
 const requiredLocationFields = ["pickupCity", "pickupZip", "pickupFloor", "destinationCity", "destinationZip", "destinationFloor"]
 
 const errors = reactive({
+  date: false,
   pickupCity: false,
   pickupZip: false,
   pickupFloor: false,
@@ -101,6 +108,7 @@ const errors = reactive({
 
 
 const resetErrors = () => {
+  errors.date = false
 
   errors.firstName = false
   errors.lastName = false
@@ -124,6 +132,11 @@ const validateForm = () => {
   resetErrors()
 
   let valid = true
+  earliestDate.value = currentBerlinDate()
+  if (form.date && form.date < earliestDate.value) {
+    errors.date = true
+    valid = false
+  }
 
 
   if (!form.firstName.trim()) {
@@ -1407,7 +1420,12 @@ const submitForm = async () => {
                     id="preferred-date"
                     v-model="form.date"
                     type="date"
+                    :min="earliestDate"
+                    :aria-invalid="errors.date"
+                    :aria-describedby="errors.date ? 'preferred-date-error' : undefined"
+                    @focus="earliestDate = currentBerlinDate()"
                   >
+                  <p v-if="errors.date" id="preferred-date-error" role="alert">{{ t('datePastError') }}</p>
 
                 </div>
 

@@ -15,7 +15,12 @@ export async function sha256(value: string) {
   const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
   return Array.from(new Uint8Array(hash), (b) => b.toString(16).padStart(2, "0")).join("");
 }
-export function validateData(kind: Kind, input: unknown): Record<string, unknown> {
+export function berlinDate(now = new Date()): string {
+  const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+  const part = (type: string) => parts.find(p => p.type === type)!.value;
+  return `${part("year")}-${part("month")}-${part("day")}`;
+}
+export function validateData(kind: Kind, input: unknown, now = new Date()): Record<string, unknown> {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new InputError({ form: ["Invalid form."] });
   const raw = input as Record<string, unknown>;
   const data: Record<string, unknown> = {};
@@ -53,6 +58,7 @@ export function validateData(kind: Kind, input: unknown): Record<string, unknown
       const date = String(raw.preferred_date);
       const parsed = new Date(`${date}T00:00:00Z`);
       if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) errors.preferred_date = ["Enter a valid date."];
+      else if (date < berlinDate(now)) errors.preferred_date = ["Choose today or a future date."];
       else data.preferred_date = date;
     } else data.preferred_date = null;
   }

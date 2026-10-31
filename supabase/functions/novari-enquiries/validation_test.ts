@@ -24,8 +24,17 @@ Deno.test("both forms require explicit boolean consent and a valid email", () =>
 });
 Deno.test("date and field lengths are checked", () => {
   assert.throws(() => validateData("quote", { ...quote, preferred_date: "2026-02-30" }), InputError);
-  assert.equal(validateData("quote", { ...quote, preferred_date: "2028-02-29" }).preferred_date, "2028-02-29");
+  assert.equal(validateData("quote", { ...quote, preferred_date: "2028-02-29" }, new Date("2028-02-28T12:00:00Z")).preferred_date, "2028-02-29");
   assert.throws(() => validateData("contact", { name: "x", email: "a@example.com", consent_accepted: true, message: "x".repeat(10001) }), InputError);
+});
+
+Deno.test("preferred dates use the Berlin calendar day and allow today", () => {
+  const now = new Date("2026-10-30T23:30:00Z");
+  assert.throws(() => validateData("quote", { ...quote, preferred_date: "2026-10-30" }, now), InputError);
+  for (const date of ["2026-10-31", "2026-11-01"]) {
+    assert.equal(validateData("quote", { ...quote, preferred_date: date }, now).preferred_date, date);
+  }
+  assert.equal(validateData("quote", quote, now).preferred_date, null);
 });
 Deno.test("upload manifest rejects unsafe types, size/count excess and header injection", () => {
   const file = { name: "photo.jpg", type: "image/jpeg", size: 1024 };
@@ -53,6 +62,14 @@ Deno.test("emails escape customer content and include referral/locations", () =>
   assert.ok(owner.html.includes("&lt;img src=x&gt;"));
   const customer = renderEmail("quote", "customer", data, [{ name: "private.jpg", url: "https://private.example.com" }]);
   assert.ok(!customer.html.includes("private.example.com"));
-  assert.ok(customer.subject.includes("42"));
+  for (const kind of ["quote", "contact"]) {
+    const acknowledgement = renderEmail(kind, "customer", { ...data, name: "Test" }, []);
+    assert.ok(!acknowledgement.subject.includes("#42"));
+    assert.ok(!acknowledgement.html.includes("Anfrage-Nr."));
+    assert.ok(!acknowledgement.text.includes("Anfrage-Nr."));
+    const notification = renderEmail(kind, "owner", { ...data, name: "Test" }, []);
+    assert.ok(notification.subject.includes("#42"));
+    assert.ok(notification.text.includes("Anfrage-Nr.: 42"));
+  }
   assert.ok(renderEmail("contact", "owner", { name: "Test", reference: 7, email: "a@example.com", message: "Hello\nWorld" }, []).html.includes("Hello<br>World"));
 });
